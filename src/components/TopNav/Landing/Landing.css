@@ -80,13 +80,13 @@
 
   background-repeat: no-repeat;
 }
-/* .landingthree {
+.landingthree {
   background-image: linear-gradient(
       to left,
       rgba(193, 212, 192, 0.01),
       rgba(9, 27, 29, 0.9)
     ),
-    url("../../assets/banner4.jpg");
+    url("../../../assets//banner3.jpg");
  
   height: auto;
   width: 100%;
@@ -96,7 +96,7 @@
   background-size: 100% 85%;
 
   background-repeat: no-repeat;
-} */
+}
 
 @keyframes fade-in {
   from {
