@@ -5,6 +5,8 @@ import Nav from './components/Nav/Nav';
 import Landing from './components/TopNav/Landing/Landing';
 import Services from './components/Services/Services';
 import CompanyOverview from './components/CompanyOverview/CompanyOverview';
+import Products from './components/Products/Products';
+import ProductCarousel from './components/Products/ProductCarousel';
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
        <Landing></Landing>
        <Services></Services>
        <CompanyOverview></CompanyOverview>
+       <Products></Products>
+       <ProductCarousel></ProductCarousel>
     </div>
   );
 }
