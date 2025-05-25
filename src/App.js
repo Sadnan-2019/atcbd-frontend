@@ -7,6 +7,7 @@ import Services from './components/Services/Services';
 import CompanyOverview from './components/CompanyOverview/CompanyOverview';
 import Products from './components/Products/Products';
 import ProductCarousel from './components/Products/ProductCarousel';
+import Quote from './components/Quote/Quote';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
        <CompanyOverview></CompanyOverview>
        <Products></Products>
        <ProductCarousel></ProductCarousel>
+       <Quote></Quote>
     </div>
   );
 }
