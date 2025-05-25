@@ -8,6 +8,9 @@ import CompanyOverview from './components/CompanyOverview/CompanyOverview';
 import Products from './components/Products/Products';
 import ProductCarousel from './components/Products/ProductCarousel';
 import Quote from './components/Quote/Quote';
+import TeamSlider from './components/TeamSlider/TeamSlider';
+import News from './components/News/News';
+import Footer from './components/Footer/Footer';
 
 function App() {
   return (
@@ -20,6 +23,9 @@ function App() {
        <Products></Products>
        <ProductCarousel></ProductCarousel>
        <Quote></Quote>
+       <TeamSlider></TeamSlider>
+       <News></News>
+       <Footer></Footer>
     </div>
   );
 }
