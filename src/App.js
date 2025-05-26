@@ -11,14 +11,17 @@ import Quote from './components/Quote/Quote';
 import TeamSlider from './components/TeamSlider/TeamSlider';
 import News from './components/News/News';
 import Footer from './components/Footer/Footer';
+import GsapSlider from './components/GsapSlider/GsapSlider';
 
 function App() {
   return (
     <div className=" ">
        <TopNav></TopNav>
        <Nav></Nav>
-       <Landing></Landing>
+       {/* <Landing></Landing> */}
+       <GsapSlider></GsapSlider>
        <Services></Services>
+
        <CompanyOverview></CompanyOverview>
        <Products></Products>
        <ProductCarousel></ProductCarousel>
