@@ -12,6 +12,7 @@ import TeamSlider from './components/TeamSlider/TeamSlider';
 import News from './components/News/News';
 import Footer from './components/Footer/Footer';
 import GsapSlider from './components/GsapSlider/GsapSlider';
+import Login from './components/Login/Login';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
        <Products></Products>
        <ProductCarousel></ProductCarousel>
        <Quote></Quote>
+       <Login></Login>
        <TeamSlider></TeamSlider>
        <News></News>
        <Footer></Footer>
