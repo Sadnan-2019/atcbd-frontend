@@ -275,7 +275,7 @@ const Nav = () => {
       <li className="nav-item p-2">
         <NavLink
           className={({ isActive }) => (isActive ? active : normal)}
-          to="/home"
+          to="/"
         >
           Home
         </NavLink>

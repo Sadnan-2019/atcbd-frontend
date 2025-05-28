@@ -2,34 +2,43 @@ import logo from './logo.svg';
 import './App.css';
 import TopNav from './components/TopNav/TopNav';
 import Nav from './components/Nav/Nav';
-import Landing from './components/TopNav/Landing/Landing';
-import Services from './components/Services/Services';
-import CompanyOverview from './components/CompanyOverview/CompanyOverview';
-import Products from './components/Products/Products';
-import ProductCarousel from './components/Products/ProductCarousel';
-import Quote from './components/Quote/Quote';
-import TeamSlider from './components/TeamSlider/TeamSlider';
-import News from './components/News/News';
 import Footer from './components/Footer/Footer';
-import GsapSlider from './components/GsapSlider/GsapSlider';
 import Login from './components/Login/Login';
+import { Route, Routes } from 'react-router-dom';
+import Home from './components/Home/Home';
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
+import Dashboard from './components/Dashboard/Dashboard';
+import AddServices from './components/Dashboard/Services/AddServices';
 
 function App() {
   return (
     <div className=" ">
        <TopNav></TopNav>
        <Nav></Nav>
-       {/* <Landing></Landing> */}
-       <GsapSlider></GsapSlider>
-       <Services></Services>
+       
+ <Routes>
+        <Route path="/login" element={<Login/>}></Route>
 
-       <CompanyOverview></CompanyOverview>
-       <Products></Products>
-       <ProductCarousel></ProductCarousel>
-       <Quote></Quote>
-       <Login></Login>
-       <TeamSlider></TeamSlider>
-       <News></News>
+    <Route path="/" element={<Home />}></Route>
+ 
+
+
+
+    <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        >
+                    {/* <Route index element={<MyAppoinment></MyAppoinment>}></Route> */}
+
+     <Route path="add-services" element={<ProtectedRoute><AddServices /></ProtectedRoute>} />
+         
+        </Route>
+ </Routes>
+        
        <Footer></Footer>
     </div>
   );

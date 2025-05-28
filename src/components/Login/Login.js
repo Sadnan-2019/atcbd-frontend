@@ -7,6 +7,7 @@ import {
   FaLinkedinIn,
   FaUser, FaEnvelope, FaLock,
 } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 // import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
 
 const Login = () => {
@@ -33,6 +34,29 @@ const [userData, setUserData] = useState({
   };
 
 
+//login///
+
+const [formData, setFormData] = useState({ email: '', password: '' });
+  const navigate = useNavigate();
+
+  const LoginhandleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post('http://localhost:5000/api/auth/login', formData);
+      alert(res.data.message);
+
+      // Optional: Save user info in localStorage
+      localStorage.setItem('user', JSON.stringify(res.data.user));
+
+      // Redirect to dashboard
+      navigate('/dashboard');
+    } catch (err) {
+      alert(err.response?.data?.error || 'Login failed');
+    }
+  };
 
 
 
@@ -67,36 +91,43 @@ const [userData, setUserData] = useState({
               <IconButton Icon={FaLinkedinIn} />
             </div>
             <span className="text-sm mb-3">or use your email password</span>
-            <form className="space-y-5">
-            <div className="relative">
-              <FaEnvelope className="absolute top-3.5 left-3 text-gray-400" />
-              <input
-                type="email"
-                placeholder="Email"
-                className="pl-10 w-full border rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-400"
-              />
-            </div>
-            <div className="relative">
-              <FaLock className="absolute top-3.5 left-3 text-gray-400" />
-              <input
-                type="password"
-                placeholder="Password"
-                className="pl-10 w-full border rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-400"
-              />
-            </div>
-            <div className="text-sm text-right">
-              <a href="#" className="text-indigo-600 hover:underline">Forgot password?</a>
-            </div>
-            <button
-              type="submit"
-              className="w-full   bg-[#F16022] text-white py-2 rounded-md hover:bg-indigo-700 transition"
-            >
-              Sign In
-            </button>
-          </form>
-           
-            {/* <button className="btn mt-4">Sign In</button> */}
-          </div>
+             {/* //login form  */}
+           <form className="space-y-5" onSubmit={handleSubmit}>
+      <div className="relative">
+        <FaEnvelope className="absolute top-3.5 left-3 text-gray-400" />
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          value={formData.email}
+          onChange={LoginhandleChange}
+          className="pl-10 w-full border rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+          required
+        />
+      </div>
+      <div className="relative">
+        <FaLock className="absolute top-3.5 left-3 text-gray-400" />
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          value={formData.password}
+          onChange={LoginhandleChange}
+          className="pl-10 w-full border rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+          required
+        />
+      </div>
+      <div className="text-sm text-right">
+        <a href="/" className="text-indigo-600 hover:underline">Forgot password?</a>
+      </div>
+      <button
+        type="submit"
+        className="w-full bg-[#F16022] text-white py-2 rounded-md hover:bg-indigo-700 transition"
+      >
+        Sign In
+      </button>
+    </form>
+           </div>
 
 
 
