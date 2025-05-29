@@ -1,10 +1,30 @@
-import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import atch from "../../assets/ATCL_Logo5.png";
+import { toast } from "react-toastify";
 
 const Nav = () => {
   const [serviceOpen, setServiceOpen] = useState(false);
   const [productOpen, setProductOpen] = useState(false);
+ const navigate = useNavigate();
+  const location = useLocation(); // 👈 triggers re-render on route change
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  // ✅ Check login status whenever route changes
+  useEffect(() => {
+    const token = localStorage.getItem("userToken");
+    setIsLoggedIn(!!token);
+  }, [location]); // 👈 run when location changes
+
+  const handleLogout = () => {
+    localStorage.removeItem("userToken");
+    localStorage.removeItem("userInfo");
+    setIsLoggedIn(false);
+    toast.success("Logged out successfully");
+    navigate("/login");
+  };
+
+
 
   // Menu item styles
   const active =
@@ -306,14 +326,20 @@ const Nav = () => {
           Contact
         </NavLink>
       </li>
-      <li className="nav-item p-2">
+       <li className="nav-item p-2">
+      {!isLoggedIn ? (
         <NavLink
-          className={({ isActive }) => (isActive ? active : normal)}
           to="/login"
+           className={({ isActive }) => (isActive ? active : normal)}
         >
           Login
         </NavLink>
-      </li>
+      ) : (
+        <button onClick={handleLogout} className="btn btn-sm btn-error">
+          Logout
+        </button>
+      )}
+    </li>
     </>
   );
 

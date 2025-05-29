@@ -75,6 +75,19 @@ const ManageServices = () => {
                   {loadingId === service._id ? (
                     <span className="loading loading-spinner loading-sm text-white"></span>
                   ) : (
+                    "Edit"
+                  )}
+                </button>
+              </td>
+              <td>
+                <button
+                  onClick={() => handleDelete(service._id)}
+                  className="btn btn-sm bg-red-600 text-white hover:bg-red-700 flex items-center"
+                  disabled={loadingId === service._id}
+                >
+                  {loadingId === service._id ? (
+                    <span className="loading loading-spinner loading-sm text-white"></span>
+                  ) : (
                     "Delete"
                   )}
                 </button>

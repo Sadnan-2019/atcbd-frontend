@@ -8,6 +8,7 @@ import {
   FaUser, FaEnvelope, FaLock,
 } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 // import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
 
 const Login = () => {
@@ -43,20 +44,23 @@ const [formData, setFormData] = useState({ email: '', password: '' });
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await axios.post('http://localhost:5000/api/auth/login', formData);
-      alert(res.data.message);
+  e.preventDefault();
+  try {
+    const res = await axios.post("http://localhost:5000/api/auth/login", formData);
 
-      // Optional: Save user info in localStorage
-      localStorage.setItem('user', JSON.stringify(res.data.user));
-
-      // Redirect to dashboard
-      navigate('/dashboard');
-    } catch (err) {
-      alert(err.response?.data?.error || 'Login failed');
+    if (res.data.token) {
+      localStorage.setItem("userToken", res.data.token);
+      localStorage.setItem("userInfo", JSON.stringify(res.data.user)); // optional
+      toast.success("Login successful");
+      navigate("/dashboard"); // redirect after login
+    } else {
+      toast.error("Login failed: Token not received");
     }
-  };
+  } catch (err) {
+    toast.error(err.response?.data?.error || "Login failed");
+  }
+};
+
 
 
 
