@@ -9,6 +9,7 @@ import Home from './components/Home/Home';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import Dashboard from './components/Dashboard/Dashboard';
 import AddServices from './components/Dashboard/Services/AddServices';
+import ManageServices from './components/Dashboard/Services/ManageServices';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
                     {/* <Route index element={<MyAppoinment></MyAppoinment>}></Route> */}
 
      <Route path="add-services" element={<ProtectedRoute><AddServices /></ProtectedRoute>} />
+     <Route path="manage-services" element={<ProtectedRoute><ManageServices /></ProtectedRoute>} />
          
         </Route>
  </Routes>

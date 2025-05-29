@@ -41,7 +41,7 @@ const Dashboard = () => {
               </div>
               <div class="  p-1">
                 <li>
-                  <Link to="/">Manage Services</Link>
+                  <Link to="/dashboard/manage-services">Manage Services</Link>
                 </li>
               </div>
             </details>
