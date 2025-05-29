@@ -1,24 +1,48 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-
+import { toast } from "react-toastify";
 const ManageServices = () => {
 
 
      const [services, setServices] = useState([]);
+  const [loadingId, setLoadingId] = useState(null); // To show spinner on the specific delete button
 
-  useEffect(() => {
+  // Fetch services
+  const fetchServices = () => {
     axios
       .get("http://localhost:5000/api/services/all")
-      .then((res) => {
-        setServices(res.data);
-      })
+      .then((res) => setServices(res.data))
       .catch((err) => {
-        console.error("Error fetching services:", err);
+        console.error("Fetch error:", err);
+        toast.error("Failed to fetch services.");
       });
+  };
+
+  // Delete service
+  const handleDelete = async (id) => {
+    const confirmDelete = window.confirm("Are you sure you want to delete?");
+    if (!confirmDelete) return;
+
+    try {
+      setLoadingId(id);
+      await axios.delete(`http://localhost:5000/api/services/${id}`);
+      setServices((prev) => prev.filter((service) => service._id !== id));
+      toast.success("Service deleted successfully.");
+    } catch (err) {
+      console.error("Delete error:", err);
+      toast.error("Failed to delete service.");
+    } finally {
+      setLoadingId(null);
+    }
+  };
+
+  useEffect(() => {
+    fetchServices();
   }, []);
+
      return (
           <div>
-              <div className="overflow-x-auto w-full p-4">
+        <div className="overflow-x-auto w-full p-4">
       <table className="table table-zebra w-full border border-gray-300">
         <thead>
           <tr className="bg-gray-100">
@@ -26,7 +50,7 @@ const ManageServices = () => {
             <th>Service Name</th>
             <th>Description</th>
             <th>Image</th>
-            <th>Action</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody className='text-black'>
@@ -39,30 +63,27 @@ const ManageServices = () => {
                 <img
                   src={`http://localhost:5000/${service.image}`}
                   alt="Service"
-                  className="w-20 h-20 object-cover rounded"
+                  className="w-16 h-16 object-cover"
                 />
               </td>
               <td>
-               <button
-                    //   onClick={() => handleDoctorDelete(doctor._id)}
-                      className="btn btn-xs"
-                    >
-                     EDIT
-                    </button>
-              </td>
-              <td>
-               <button
-                    //   onClick={() => handleDoctorDelete(doctor._id)}
-                      className="btn btn-xs"
-                    >
-                     DELETE
-                    </button>
+                <button
+                  onClick={() => handleDelete(service._id)}
+                  className="btn btn-sm bg-red-600 text-white hover:bg-red-700 flex items-center"
+                  disabled={loadingId === service._id}
+                >
+                  {loadingId === service._id ? (
+                    <span className="loading loading-spinner loading-sm text-white"></span>
+                  ) : (
+                    "Delete"
+                  )}
+                </button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-    </div> 
+    </div>
           </div>
      );
 };

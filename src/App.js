@@ -10,7 +10,8 @@ import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import Dashboard from './components/Dashboard/Dashboard';
 import AddServices from './components/Dashboard/Services/AddServices';
 import ManageServices from './components/Dashboard/Services/ManageServices';
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function App() {
   return (
     <div className=" ">
@@ -42,6 +43,8 @@ function App() {
  </Routes>
         
        <Footer></Footer>
+             <ToastContainer position="top-right" autoClose={3000} />
+
     </div>
   );
 }
