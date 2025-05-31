@@ -66,19 +66,19 @@ const ManageTeamMember = () => {
                   className="w-16 h-16 object-cover"
                 />
               </td>
-              {/* <td>
+              <td>
                 <button
-                  onClick={() => handleDelete(service._id)}
+                  onClick={() => handleDelete(team._id)}
                   className="btn btn-sm bg-red-600 text-white hover:bg-red-700 flex items-center"
-                  disabled={loadingId === service._id}
+                  disabled={loadingId === team._id}
                 >
-                  {loadingId === service._id ? (
+                  {loadingId === team._id ? (
                     <span className="loading loading-spinner loading-sm text-white"></span>
                   ) : (
                     "Edit"
                   )}
                 </button>
-              </td> */}
+              </td>
               <td>
                 <button
                   onClick={() => handleDelete(team._id)}

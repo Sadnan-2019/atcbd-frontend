@@ -16,11 +16,13 @@ import AddCategories from './components/Dashboard/Category/AddCategories';
 import ManageCategories from './components/Dashboard/Category/ManageCategories';
 import AddTeamMember from './components/Dashboard/TeamMember/AddTeamMember';
 import ManageTeamMember from './components/Dashboard/TeamMember/ManageTeamMember';
+import Navbar from './components/Nav/Navbar';
 function App() {
   return (
     <div className=" ">
        <TopNav></TopNav>
-       <Nav></Nav>
+       {/* <Nav></Nav> */}
+       <Navbar></Navbar>
        
  <Routes>
         <Route path="/login" element={<Login/>}></Route>
