@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
@@ -15,21 +16,22 @@ const AddTeamMember = () => {
       const formData = new FormData();
       formData.append("membername", data.membername);
       formData.append("memberdesignation", data.memberdesignation);
-      formData.append("file", data.file[0]); // Assuming "file" is the name of the file input
+      formData.append("file", data.file[0]);
 
-      const response = await fetch("http://localhost:5000/api/services", {
-        method: "POST",
-        body: formData,
+      const response = await axios.post("http://localhost:5000/api/team/add", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
       });
-      if (response.ok) {
-        reset();
-        toast.success("Member Add successfully.");
-      }
 
-      const responseData = await response.json();
-      console.log(responseData, formData);
+      if (response) {
+        reset();
+        toast.success("Member added successfully.");
+        console.log(response.data);
+      }
     } catch (error) {
-      console.error(error);
+      console.error("Upload failed:", error);
+      toast.error("Failed to add member. Please try again.");
     }
   };
 

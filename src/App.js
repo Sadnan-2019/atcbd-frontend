@@ -15,6 +15,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import AddCategories from './components/Dashboard/Category/AddCategories';
 import ManageCategories from './components/Dashboard/Category/ManageCategories';
 import AddTeamMember from './components/Dashboard/TeamMember/AddTeamMember';
+import ManageTeamMember from './components/Dashboard/TeamMember/ManageTeamMember';
 function App() {
   return (
     <div className=" ">
@@ -44,6 +45,7 @@ function App() {
      <Route path="add-product" element={<ProtectedRoute><AddCategories /></ProtectedRoute>} />
      <Route path="manage-category" element={<ProtectedRoute><ManageCategories /></ProtectedRoute>} />
      <Route path="add-team-member" element={<ProtectedRoute><AddTeamMember /></ProtectedRoute>} />
+     <Route path="manage-team-member" element={<ProtectedRoute><ManageTeamMember /></ProtectedRoute>} />
          
         </Route>
  </Routes>
