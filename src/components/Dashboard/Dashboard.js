@@ -49,7 +49,7 @@ const Dashboard = () => {
           <li>
             <details class="mb-2">
               <summary class=" p-3 rounded-lg cursor-pointer shadow">
-                <span class="font-semibold text-white">Product</span>
+                <span class="font-semibold text-white">Product Category</span>
               </summary>
               <div class="  p-1">
                 {/* <p class="text-white">Add Doctor</p> */}
@@ -65,15 +65,15 @@ const Dashboard = () => {
           <li>
             <details class="mb-2">
               <summary class=" p-3 rounded-lg cursor-pointer shadow">
-                <span class="font-semibold text-white">Health Package </span>
+                <span class="font-semibold text-white">Team Member </span>
               </summary>
               <div class="  p-1">
                 {/* <p class="text-white">Add Doctor</p> */}
-                <li><Link to="/dashboard/add-package">Add Package  </Link></li>
+                <li><Link to="/dashboard/add-team-member">Add Team Member  </Link></li>
               </div>
               <div class="  p-1">
                 <li>
-                  <Link to="/dashboard/manage-package">Manage Package</Link>
+                  <Link to="/dashboard/manage-team-member">Manage Team Member</Link>
                 </li>
               </div>
             </details>

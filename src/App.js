@@ -14,6 +14,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AddCategories from './components/Dashboard/Category/AddCategories';
 import ManageCategories from './components/Dashboard/Category/ManageCategories';
+import AddTeamMember from './components/Dashboard/TeamMember/AddTeamMember';
 function App() {
   return (
     <div className=" ">
@@ -42,6 +43,7 @@ function App() {
      <Route path="manage-services" element={<ProtectedRoute><ManageServices /></ProtectedRoute>} />
      <Route path="add-product" element={<ProtectedRoute><AddCategories /></ProtectedRoute>} />
      <Route path="manage-category" element={<ProtectedRoute><ManageCategories /></ProtectedRoute>} />
+     <Route path="add-team-member" element={<ProtectedRoute><AddTeamMember /></ProtectedRoute>} />
          
         </Route>
  </Routes>
