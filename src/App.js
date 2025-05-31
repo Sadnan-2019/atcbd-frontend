@@ -13,6 +13,7 @@ import ManageServices from './components/Dashboard/Services/ManageServices';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AddCategories from './components/Dashboard/Category/AddCategories';
+import ManageCategories from './components/Dashboard/Category/ManageCategories';
 function App() {
   return (
     <div className=" ">
@@ -40,6 +41,7 @@ function App() {
      <Route path="add-services" element={<ProtectedRoute><AddServices /></ProtectedRoute>} />
      <Route path="manage-services" element={<ProtectedRoute><ManageServices /></ProtectedRoute>} />
      <Route path="add-product" element={<ProtectedRoute><AddCategories /></ProtectedRoute>} />
+     <Route path="manage-category" element={<ProtectedRoute><ManageCategories /></ProtectedRoute>} />
          
         </Route>
  </Routes>

@@ -57,7 +57,7 @@ const Dashboard = () => {
               </div>
               <div class="  p-1">
                 <li>
-                  <Link to="/dashboard/manage-product">Manage Category</Link>
+                  <Link to="/dashboard/manage-category">Manage Category</Link>
                 </li>
               </div>
             </details>
