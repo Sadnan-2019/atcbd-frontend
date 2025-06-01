@@ -17,12 +17,15 @@ import ManageCategories from './components/Dashboard/Category/ManageCategories';
 import AddTeamMember from './components/Dashboard/TeamMember/AddTeamMember';
 import ManageTeamMember from './components/Dashboard/TeamMember/ManageTeamMember';
 import Navbar from './components/Nav/Navbar';
+import NewNav from './components/Nav/HeaderNavBar';
+import HeaderNavBar from './components/Nav/HeaderNavBar';
 function App() {
   return (
     <div className=" ">
        <TopNav></TopNav>
-       <Nav></Nav>
+       {/* <Nav></Nav> */}
        {/* <Navbar></Navbar> */}
+     <HeaderNavBar></HeaderNavBar>
        
  <Routes>
         <Route path="/login" element={<Login/>}></Route>
