@@ -21,8 +21,8 @@ function App() {
   return (
     <div className=" ">
        <TopNav></TopNav>
-       {/* <Nav></Nav> */}
-       <Navbar></Navbar>
+       <Nav></Nav>
+       {/* <Navbar></Navbar> */}
        
  <Routes>
         <Route path="/login" element={<Login/>}></Route>

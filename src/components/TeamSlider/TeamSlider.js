@@ -50,6 +50,24 @@ const teamData = [
 ];
 
 const TeamSlider = () => {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
   const settings = {
     dots: true,
     infinite: true,
