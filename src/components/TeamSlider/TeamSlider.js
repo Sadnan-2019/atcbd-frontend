@@ -1,56 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import { FaPhone, FaEnvelope } from "react-icons/fa";
 import { FaTwitter, FaLinkedin } from "react-icons/fa";
+import { toast } from "react-toastify";
+import axios from "axios";
 
-const teamData = [
-  {
-    name: "Mohammad Salim",
-    designation: "Managing Director",
-    image: "https://atcbd.net//public/images/team/BOSS.jpg",
-    phone: "+8801819556752",
-    email: "atc@dhaka.net",
-    socials: ["twitter", "linkedin"],
-  },
-  {
-    name: "Md. Miron Hossain",
-    designation: "Executive Director",
-    image: "https://atcbd.net//public/images/team/EX-Dir52.jpg",
-    phone: "+8801819556754",
-    email: "miron@atcbd.net",
-  },
-  {
-    name: "Engr.Iqbal Alam Tutul",
-    designation: "Deputy General Manager",
-    image: "https://atcbd.net/public/images/team/No-Image.jpg",
-    phone: "+8801819556759",
-    email: "tutul@atcbd.net",
-  },
-  {
-    name: "Engr.Eusuf Alam",
-    designation: "Senior Manager",
-    image: "https://atcbd.net/public/images/team/No-Image.jpg",
-    phone: "+8801819556757",
-    email: "info@atcbd.net",
-  },
-  {
-    name: "Engr.Md.Golam Mortuza (Shawon)",
-    designation: "Manager",
-    image: "https://atcbd.net/public/images/team/No-Image.jpg",
-    phone: "+8801847182123",
-    email: "mortuzashaon@atcbd.net",
-  },
-  {
-    name: "Engr.Sultan Mahmud",
-    designation: "Manager",
-    image: "https://atcbd.net/public/images/team/No-Image.jpg",
-    phone: "+88047182128",
-    email: "sultan@atcbd.net",
-  },
-];
+ 
 
 const TeamSlider = () => {
 
+const [teamData, setTeams] = useState([]);
+  const [loadingId, setLoadingId] = useState(null); // To show spinner on the specific delete button
+
+  // Fetch services
+  const fetchServices = () => {
+    axios
+      .get("http://localhost:5000/api/team/all")
+      .then((res) => setTeams(res.data))
+      .catch((err) => {
+        console.error("Fetch error:", err);
+        toast.error("Failed to fetch team.");
+      });
+  };
+
+
+
+
+useEffect(() => {
+    fetchServices();
+  }, []);
 
 
 
@@ -62,12 +40,6 @@ const TeamSlider = () => {
 
 
 
-
-
-
-
-
-  
   const settings = {
     dots: true,
     infinite: true,
@@ -105,30 +77,30 @@ const TeamSlider = () => {
             <div className="bg-white rounded-2xl shadow-md text-center p-4">
               <div className="mb-4">
                 <img
-                  src={member.image}
+                   src={`http://localhost:5000/${member.image}`}
                   alt={member.name}
                   className="w-full h-72 object-cover rounded-xl"
                 />
               </div>
-              <h3 className="text-xl font-semibold">{member.name}</h3>
-              <p className="text-gray-600 mb-2">{member.designation}</p>
+              <h3 className="text-xl font-semibold">{member.membername}</h3>
+              <p className="text-gray-600 mb-2">{member.memberdesignation}</p>
               <div className="flex justify-center gap-4 text-blue-600 mt-3">
-                <a href={`tel:${member.phone}`}>
+                <a href="" >
                   <FaPhone className="hover:text-green-600" />
                 </a>
-                <a href={`mailto:${member.email}`}>
+                <a href= "">
                   <FaEnvelope className="hover:text-red-500" />
                 </a>
-                {member.socials?.includes("twitter") && (
+                
                   <a href="#">
                     <FaTwitter className="hover:text-sky-400" />
                   </a>
-                )}
-                {member.socials?.includes("linkedin") && (
+               
+             
                   <a href="#">
                     <FaLinkedin className="hover:text-blue-800" />
                   </a>
-                )}
+                
               </div>
             </div>
           </div>
