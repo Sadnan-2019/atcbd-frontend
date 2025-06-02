@@ -24,7 +24,7 @@ const Dashboard = () => {
         <ul className="menu p-4 w-52 min-h-full    bg-gradient-to-r from-[#e87c4e] via-[#F15F22] to-[#df571d]    text-lg text-white ">
           {/* Sidebar content here */}
           <li>
-            {/* <Link to="/dashboard">My Appoinment</Link> */}
+            <Link to="/dashboard">My Dashboard</Link>
           </li>
           
 

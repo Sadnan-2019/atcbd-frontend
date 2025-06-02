@@ -20,6 +20,8 @@ import Navbar from './components/Nav/Navbar';
 import NewNav from './components/Nav/HeaderNavBar';
 import HeaderNavBar from './components/Nav/HeaderNavBar';
 import AddNews from './components/Dashboard/News/AddNews';
+import MyDashbaord from './components/Dashboard/MyDashbaord/MyDashbaord';
+ 
 function App() {
   return (
     <div className=" ">
@@ -40,11 +42,11 @@ function App() {
           path="/dashboard"
           element={
             <ProtectedRoute>
-              <Dashboard />
+              <Dashboard></Dashboard>
             </ProtectedRoute>
           }
         >
-                    {/* <Route index element={<MyAppoinment></MyAppoinment>}></Route> */}
+                    <Route index element={<MyDashbaord></MyDashbaord>}></Route>
 
      <Route path="add-services" element={<ProtectedRoute><AddServices /></ProtectedRoute>} />
      <Route path="manage-services" element={<ProtectedRoute><ManageServices /></ProtectedRoute>} />
