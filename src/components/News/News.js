@@ -1,25 +1,41 @@
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
-const blogData = [
-  {
-    img: "https://atcbd.net//public/images/news/inspecton.jpg",
-    date: "03",
-    month: "Aug",
-    title: "BITAC Inspection, Our valuable Managing Director Sir and Korea team, Under SEIP Project.",
-    link: "https://atcbd.net/news/view/6",
-  },
-  {
-    img: "https://atcbd.net//public/images/news/IMG_0423.jpg",
-    date: "25",
-    month: "Jan",
-    title: "ATCL Established a Startup Lab (High Level Communication & Robotics Lab) at Ministry of ICT",
-    link: "https://atcbd.net/news/view/3",
-  },
-];
+ 
 
 const News = () => {
+
+const [blogData, setNewsList] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchNews = async () => {
+      try {
+        const res = await axios.get("http://localhost:5000/api/news/all");
+        setNewsList(res.data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching news:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchNews();
+  }, []);
+
+  if (loading) return <p className="text-center">Loading...</p>;
+
+
+
+
+
+
+
+
+  
   const settings = {
     dots: true,
     arrows: true,
@@ -59,19 +75,22 @@ const News = () => {
             <div className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300">
               <div className="relative">
                 <img
-                  src={item.img}
+                 src={`http://localhost:5000/${item.image}`}
                   alt=""
                   className="w-full h-56 object-cover"
                 />
-                <div className="absolute top-3 left-3 bg-primary text-white p-2 rounded-lg text-center w-12">
-                  <span className="block text-xl font-bold">{item.date}</span>
-                  <p className="text-sm">{item.month}</p>
+                <div className="absolute top-3 left-3 bg-primary text-white p-2 rounded-lg text-center ">
+                 
+                  <p className="text-lg  text-gray-100">
+                {new Date(item.publishDate).toLocaleDateString()}
+              </p>
                 </div>
               </div>
               <div className="p-4">
                 <h3 className="text-lg font-semibold hover:text-primary transition-colors duration-300">
                   <a href={item.link} target="_blank" rel="noopener noreferrer">
-                    {item.title}
+                    {/* <p className="mt-2">{item.newsDescription}</p> */}
+                    {item.newsHeadline}
                   </a>
                 </h3>
               </div>
