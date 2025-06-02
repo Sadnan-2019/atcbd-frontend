@@ -19,13 +19,14 @@ import ManageTeamMember from './components/Dashboard/TeamMember/ManageTeamMember
 import Navbar from './components/Nav/Navbar';
 import NewNav from './components/Nav/HeaderNavBar';
 import HeaderNavBar from './components/Nav/HeaderNavBar';
+import AddNews from './components/Dashboard/News/AddNews';
 function App() {
   return (
     <div className=" ">
        <TopNav></TopNav>
-       {/* <Nav></Nav> */}
+       <Nav></Nav>
        {/* <Navbar></Navbar> */}
-     <HeaderNavBar></HeaderNavBar>
+     {/* <HeaderNavBar></HeaderNavBar> */}
        
  <Routes>
         <Route path="/login" element={<Login/>}></Route>
@@ -51,6 +52,7 @@ function App() {
      <Route path="manage-category" element={<ProtectedRoute><ManageCategories /></ProtectedRoute>} />
      <Route path="add-team-member" element={<ProtectedRoute><AddTeamMember /></ProtectedRoute>} />
      <Route path="manage-team-member" element={<ProtectedRoute><ManageTeamMember /></ProtectedRoute>} />
+     <Route path="add-news" element={<ProtectedRoute><AddNews /></ProtectedRoute>} />
          
         </Route>
  </Routes>

@@ -81,15 +81,15 @@ const Dashboard = () => {
           <li>
             <details class="mb-2">
               <summary class=" p-3 rounded-lg cursor-pointer shadow">
-                <span class="font-semibold text-white">Facility</span>
+                <span class="font-semibold text-white">News</span>
               </summary>
               <div class="  p-1">
                 {/* <p class="text-white">Add Doctor</p> */}
-                <li><Link to="/dashboard/add-facility">Add Facility</Link></li>
+                <li><Link to="/dashboard/add-news">Add News</Link></li>
               </div>
               <div class="  p-1">
                 <li>
-                  <Link to="/dashboard/manage-department">Manage Facility</Link>
+                  <Link to="/dashboard/manage-news">Manage News</Link>
                 </li>
               </div>
             </details>
