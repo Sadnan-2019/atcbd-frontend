@@ -14,7 +14,7 @@ const [blogData, setNewsList] = useState([]);
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/news/all");
+        const res = await axios.get("https://atcbd-backend-production.up.railway.app/api/news/all");
         setNewsList(res.data);
         setLoading(false);
       } catch (error) {

@@ -25,7 +25,7 @@ const [userData, setUserData] = useState({
   const register = async (e) => {
     e.preventDefault(); // Prevent page reload
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/register', userData);
+      const res = await axios.post('https://atcbd-backend-production.up.railway.app/api/auth/register', userData);
       alert(res.data.message);
       console.log(userData)
       setUserData({ name: '', email: '', password: '' }); // Clear form
@@ -46,7 +46,7 @@ const [formData, setFormData] = useState({ email: '', password: '' });
 const handleSubmit = async (e) => {
   e.preventDefault();
   try {
-    const res = await axios.post("http://localhost:5000/api/auth/login", formData);
+    const res = await axios.post("https://atcbd-backend-production.up.railway.app/api/auth/login", formData);
 
     if (res.data.token) {
       localStorage.setItem("userToken", res.data.token);

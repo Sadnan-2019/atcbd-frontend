@@ -14,7 +14,8 @@ const [services, setServices] = useState([]);
 
   const fetchServices = () => {
     axios
-      .get("http://localhost:5000/api/services/all")
+    // .get(`${process.env.REACT_APP_API_URL}/api/services/all`)
+      .get("https://atcbd-backend-production.up.railway.app/api/services/all")
       .then((res) => setServices(res.data))
       .catch((err) => {
         console.error("Fetch error:", err);

@@ -7,7 +7,7 @@ const [categories, setCategories] = useState([]);
 
   const fetchServices = () => {
   axios
-    .get("http://localhost:5000/api/categories/all")
+    .get("https://atcbd-backend-production.up.railway.app/api/categories/all")
     .then((res) => setCategories(res.data))
     .catch((err) => {
       console.error("Fetch error:", err);

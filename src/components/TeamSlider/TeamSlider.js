@@ -15,7 +15,7 @@ const [teamData, setTeams] = useState([]);
   // Fetch services
   const fetchServices = () => {
     axios
-      .get("http://localhost:5000/api/team/all")
+      .get("https://atcbd-backend-production.up.railway.app/api/team/all")
       .then((res) => setTeams(res.data))
       .catch((err) => {
         console.error("Fetch error:", err);
