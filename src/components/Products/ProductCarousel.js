@@ -11,7 +11,7 @@ const products = [
     description:
       "Product Description:The trainer adopts original auto air conditioning system and uses motor to simulate the engine drive the air conditioning system. It can really show the structure and working principle of the auto air conditioning system.",
     image:
-      "https://atcbd.net//public/images/product/VEHICLE_AIR-CONDITIONING_TRAINER2.png",
+      "https://i.ibb.co/vCDrF8nK/vechicle.webp",
     link: "https://atcbd.net/product/view/146",
   },
   {
@@ -20,7 +20,7 @@ const products = [
     description:
       "The engine is operated manually by means of a crank handle.This cutaway model is carefully sectioned for training purposes, professionally painted with different colors to better differentiate the various parts, cross-sections, lubricating circuits, fuelsystem, cooling system etc.",
     image:
-      "https://atcbd.net//public/images/product/TOYOTA_PETROL_ENGINE_WITH_VVT.png",
+      "https://i.ibb.co/1JsS18KL/vechicle34.jpg",
     link: "https://atcbd.net/product/view/147",
   },
   {
@@ -29,7 +29,7 @@ const products = [
     description:
       "Operated manually through a crank handle.This cutaway model is carefully sectioned for training purposes, and professionally painted with different colours to better differentiate the various parts, cross-sections.Many parts have been chromium, plated and galvanized for a longer life.",
     image:
-      "https://atcbd.net//public/images/product/STEERING_UNIT_WITH_McPHERSON_SUSPENSIONS.png",
+      "https://i.ibb.co/zh7dJ6Cn/vechicle5.jpg",
     link: "https://atcbd.net/product/view/148",
   },
   {
@@ -38,7 +38,7 @@ const products = [
     description:
       "Operated through a hand wheel.This cutaway model is carefully sectioned for training purposes, professionally painted with different colours to better differentiate the various parts, cross-sections.Many parts have been chromium, plated and galvanized for a longer life.",
     image:
-      "https://atcbd.net//public/images/product/POWER_STEERING_WITH_RE-CIRCULATING_BALL_SYSTEM.png",
+      "https://i.ibb.co/S404pcMn/vechicle3.jpg",
     link: "https://atcbd.net/product/view/149",
   },
   {
@@ -47,7 +47,7 @@ const products = [
     description:
       "The ATCL-3014 is for training skills in disassembly, reassembly, engine operation, tune-up, repair and maintenance, and overhaul.Engine without transmission, in running condition. Mounted on a sturdy tubular steel stand equipped with rotating device with lockable castor wheel for mobility.",
     image:
-      "https://atcbd.net//public/images/product/PETROL_ENGINE_TRAINING_STAND.png",
+      "https://i.ibb.co/ccDbVN8g/vechicle2.jpg",
     link: "https://atcbd.net/product/view/150",
   },
   {
@@ -56,7 +56,7 @@ const products = [
     description:
       "Operated through a hand wheel.The clutch is operated mechanically by means of a foot pedal for training purposes.This cutaway model is carefully sectioned for training purposes, professionally painted with different colours to better differentiate the various parts.Many parts have been chromium, plated and galvanized for a longer life.",
     image:
-      "https://atcbd.net//public/images/product/GEARBOX_WITH_CLUTCH_4_FORWARD_SPEED_+_REVERSE.png",
+      "https://i.ibb.co/dwN5Qfzp/vechicle1.jpg",
     link: "https://atcbd.net/product/view/151",
   },
 ];

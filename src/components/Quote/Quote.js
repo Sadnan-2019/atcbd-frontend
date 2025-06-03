@@ -5,11 +5,11 @@ const Quote = () => {
           <div className='py-28'>
               <section
   class="bg-cover bg-center py-28 px-4 md:px-8"
-  style={{backgroundImage:"url('https://atcbd.net/public/images/Home_Quote_Background.jpg'"}}
+  style={{backgroundImage:"url('https://i.ibb.co/9969ttv0/b9f3cb9e-9d6f-421a-b890-543fe207f8c1.jpg'"}}
 >
   <div class="max-w-6xl mx-auto">
     <div class="flex justify-end">
-      <div class="w-full lg:w-9/12 xl:w-8/12 bg-white/90 backdrop-blur-sm p-8 rounded-2xl shadow-lg">
+      <div class="w-full lg:w-9/12 xl:w-8/12 bg-white/90 backdrop-blur-sm p-8 rounded-2xl shadow-lg opacity-90">
         <div class="mb-12 text-center">
           <span class="text-lg text-primary font-semibold uppercase">Get a Quote For Free</span>
           <h2 class="text-3xl md:text-4xl font-bold mt-2">Request a Free Quote</h2>

@@ -33,7 +33,7 @@ const CompanyOverview = () => {
     {/* <!-- Right Image --> */}
     <div class="w-full lg:w-1/2">
       <div class="rounded-lg overflow-hidden shadow-lg">
-        <img src="https://atcbd.net/public/images/others/001.png " alt="About ATCL" class="w-full   object-cover"/>
+        <img src="https://i.ibb.co/C3R8RhDK/about-img-11.jpg " alt="About ATCL" class="w-full   object-cover"/>
       </div>
     </div>
 
