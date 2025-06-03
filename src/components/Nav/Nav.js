@@ -326,26 +326,41 @@ const Nav = () => {
           Contact
         </NavLink>
       </li>
-       <li className="nav-item p-2">
-      {!isLoggedIn ? (
-        <NavLink
-          to="/login"
-           className={({ isActive }) => (isActive ? active : normal)}
-        >
-          Login
-        </NavLink>
-      ) : (
-        <button onClick={handleLogout} className="btn btn-sm btn-error">
-          Logout
-        </button>
-      )}
-    </li>
+      <li className="nav-item p-2">
+  {!isLoggedIn ? (
+    // Show Login if not logged in
+    <NavLink
+      to="/login"
+      className={({ isActive }) => (isActive ? active : normal)}
+    >
+      Login
+    </NavLink>
+  ) : (
+    // Show Dashboard and Logout if logged in
+    <>
+      <NavLink
+        to="/dashboard"
+        className={({ isActive }) => (isActive ? active : normal)}
+      >
+        Dashboard
+      </NavLink>
+
+      <NavLink
+        onClick={handleLogout}
+        className="btn btn-sm btn-error ml-2"
+      >
+        Logout
+      </NavLink>
+    </>
+  )}
+</li>
+
     </>
   );
 
   return (
     <div className="sticky top-0 z-50">
-      <nav className="bg-gradient-to-r   shadow-md">
+      <nav className="bg-[#f5f0f0]  shadow-md">
         <div className="mx-auto max-w-7xl px-4">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
