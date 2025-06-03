@@ -4,7 +4,7 @@ import TopNav from './components/TopNav/TopNav';
 import Nav from './components/Nav/Nav';
 import Footer from './components/Footer/Footer';
 import Login from './components/Login/Login';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import Home from './components/Home/Home';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import Dashboard from './components/Dashboard/Dashboard';
@@ -21,8 +21,10 @@ import NewNav from './components/Nav/HeaderNavBar';
 import HeaderNavBar from './components/Nav/HeaderNavBar';
 import AddNews from './components/Dashboard/News/AddNews';
 import MyDashbaord from './components/Dashboard/MyDashbaord/MyDashbaord';
+import { useState } from 'react';
  
 function App() {
+   const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
     <div className=" ">
        <TopNav></TopNav>
@@ -37,6 +39,10 @@ function App() {
  
 
 
+<Route
+  path="/dashboard"
+  element={isLoggedIn ? <Dashboard /> : <Navigate to="/login" replace />}
+/>
 
     <Route
           path="/dashboard"
