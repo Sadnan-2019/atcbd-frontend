@@ -52,8 +52,12 @@ const handleSubmit = async (e) => {
       localStorage.setItem("userToken", res.data.token);
       localStorage.setItem("userInfo", JSON.stringify(res.data.user)); // optional
       toast.success("Login successful");
-      
-      navigate("/dashboard"); // redirect after login
+      setTimeout(() => {
+    navigate("/dashboard");
+  }, 50);
+      console.log("Login successful, token:", res.data.token);
+ 
+   
     } else {
       toast.error("Login failed: Token not received");
     }

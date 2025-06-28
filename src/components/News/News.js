@@ -64,9 +64,9 @@ const [blogData, setNewsList] = useState([]);
          Our News
         </h1>
 
-        <p className=" lg:text-xl text-center text-[#E0581E] font-semibold   sm:text-4xl py-2">
+        {/* <p className=" lg:text-xl text-center text-[#E0581E] font-semibold   sm:text-4xl py-2">
           Our Recent News
-        </p>
+        </p> */}
       </div>
 
       <Slider {...settings}>

@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 const Nav = () => {
   const [serviceOpen, setServiceOpen] = useState(false);
   const [productOpen, setProductOpen] = useState(false);
- const navigate = useNavigate();
+  const navigate = useNavigate();
   const location = useLocation(); // 👈 triggers re-render on route change
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -23,8 +23,6 @@ const Nav = () => {
     toast.success("Logged out successfully");
     navigate("/login");
   };
-
-
 
   // Menu item styles
   const active =
@@ -46,13 +44,19 @@ const Nav = () => {
       >
         <span className="whitespace-nowrap">Service</span>
         <svg
-          className={`w-4 h-4 transition-transform ${serviceOpen ? "rotate-180" : ""}`}
+          className={`w-4 h-4 transition-transform ${
+            serviceOpen ? "rotate-180" : ""
+          }`}
           fill="none"
           stroke="currentColor"
           strokeWidth={2}
           viewBox="0 0 24 24"
         >
-          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M19 9l-7 7-7-7"
+          />
         </svg>
       </button>
       <ul
@@ -96,13 +100,19 @@ const Nav = () => {
       >
         <span className="whitespace-nowrap">Product</span>
         <svg
-          className={`w-4 h-4 transition-transform ${productOpen ? "rotate-180" : ""}`}
+          className={`w-4 h-4 transition-transform ${
+            productOpen ? "rotate-180" : ""
+          }`}
           fill="none"
           stroke="currentColor"
           strokeWidth={2}
           viewBox="0 0 24 24"
         >
-          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M19 9l-7 7-7-7"
+          />
         </svg>
       </button>
       <ul
@@ -167,13 +177,19 @@ const Nav = () => {
         >
           Service
           <svg
-            className={`w-4 h-4 transition-transform ${mobileServiceOpen ? "rotate-180" : ""}`}
+            className={`w-4 h-4 transition-transform ${
+              mobileServiceOpen ? "rotate-180" : ""
+            }`}
             fill="none"
             stroke="currentColor"
             strokeWidth={2}
             viewBox="0 0 24 24"
           >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M19 9l-7 7-7-7"
+            />
           </svg>
         </button>
         <ul className={`${mobileServiceOpen ? "block" : "hidden"} pl-4`}>
@@ -212,13 +228,19 @@ const Nav = () => {
         >
           Product
           <svg
-            className={`w-4 h-4 transition-transform ${mobileProductOpen ? "rotate-180" : ""}`}
+            className={`w-4 h-4 transition-transform ${
+              mobileProductOpen ? "rotate-180" : ""
+            }`}
             fill="none"
             stroke="currentColor"
             strokeWidth={2}
             viewBox="0 0 24 24"
           >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M19 9l-7 7-7-7"
+            />
           </svg>
         </button>
         <ul className={`${mobileProductOpen ? "block" : "hidden"} pl-4`}>
@@ -303,7 +325,7 @@ const Nav = () => {
       <li className="nav-item p-2">
         <NavLink
           className={({ isActive }) => (isActive ? active : normal)}
-          to="/news-media"
+          to="/dashboard"
         >
           About
         </NavLink>
@@ -326,35 +348,48 @@ const Nav = () => {
           Contact
         </NavLink>
       </li>
+
+     
+        
+     
+
       <li className="nav-item p-2">
-  {!isLoggedIn ? (
-    // Show Login if not logged in
-    <NavLink
-      to="/login"
-      className={({ isActive }) => (isActive ? active : normal)}
-    >
-      Login
-    </NavLink>
-  ) : (
-    // Show Dashboard and Logout if logged in
-    <>
-      <NavLink
-        to="/dashboard"
-        className={({ isActive }) => (isActive ? active : normal)}
-      >
-        Dashboard
-      </NavLink>
+        {!isLoggedIn ? (
+          // Show Login if not logged in
+          <NavLink
+            to="/login"
+            className={({ isActive }) => (isActive ? active : normal)}
+          >
+            Login
+          </NavLink>
+        ) : (
+          // Show Dashboard and Logout if logged in
+          <>
 
-      <NavLink
-        onClick={handleLogout}
-        className="btn btn-sm btn-error ml-2"
-      >
-        Logout
-      </NavLink>
-    </>
-  )}
-</li>
-
+          <li className="nav-item p-2">
+          <NavLink
+            className={({ isActive }) => (isActive ? active : normal)}
+            to="/dashboard"
+          >
+            Dashboard
+          </NavLink>
+        </li>
+            {/* <NavLink
+              onClick={handleLogout}
+              className="btn btn-sm btn-error ml-2"
+            >
+              Logout
+            </NavLink> */}
+             <button
+          onClick={handleLogout}
+          className="btn btn-sm btn-error ml-2"
+        >
+          Logout
+        </button>
+            
+          </>
+        )}
+      </li>
     </>
   );
 

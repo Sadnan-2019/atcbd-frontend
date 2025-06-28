@@ -24,7 +24,7 @@ import MyDashbaord from './components/Dashboard/MyDashbaord/MyDashbaord';
 import { useState } from 'react';
  
 function App() {
-   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  //  const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
     <div className=" ">
        <TopNav></TopNav>
@@ -39,10 +39,10 @@ function App() {
  
 
 
-<Route
+{/* <Route
   path="/dashboard"
   element={isLoggedIn ? <Dashboard /> : <Navigate to="/login" replace />}
-/>
+/> */}
 
     <Route
           path="/dashboard"
@@ -52,7 +52,7 @@ function App() {
             </ProtectedRoute>
           }
         >
-                    <Route index element={<MyDashbaord></MyDashbaord>}></Route>
+                    <Route index element= {<ProtectedRoute><MyDashbaord/></ProtectedRoute>}></Route>
 
      <Route path="add-services" element={<ProtectedRoute><AddServices /></ProtectedRoute>} />
      <Route path="manage-services" element={<ProtectedRoute><ManageServices /></ProtectedRoute>} />
