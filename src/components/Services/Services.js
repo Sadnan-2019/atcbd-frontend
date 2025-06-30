@@ -1,11 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import "./Services.css"
+import "./Services.css";
 const Services = () => {
-
-const [services, setServices] = useState([]);
-  
+  const [services, setServices] = useState([]);
 
   // Fetch services on component mount
   useEffect(() => {
@@ -14,8 +12,8 @@ const [services, setServices] = useState([]);
 
   const fetchServices = () => {
     axios
-    // .get(`${process.env.REACT_APP_API_URL}/api/services/all`)
-      .get("https://atcbd-backend-production.up.railway.app/api/services/all")
+      // .get(`${process.env.REACT_APP_API_URL}/api/services/all`)
+      .get("http://localhost:5000/api/services/all")
       .then((res) => setServices(res.data))
       .catch((err) => {
         console.error("Fetch error:", err);
@@ -35,34 +33,33 @@ const [services, setServices] = useState([]);
         </p>
       </div>
       <div className="flex flex-col md:flex-row flex-wrap">
-  {services.map((service) => (
-    <div key={service._id} className="w-full md:w-1/2 lg:w-1/3 p-4">
-      <div className="custom-card text-center shadow-md">
-        <div className="mb-4">
-          <img
-          src={`http://localhost:5000/${service.image}`}
-            alt={service.name}
-            className="mx-auto h-16 w-16"
-          />
-        </div>
-        <div>
-          <h5 className="text-lg font-semibold mb-2">
-            <a
-              href={`/service/view/${service._id}`}
-              className="hover:underline"
-            >
-              {service.servicename}
-            </a>
-          </h5>
-          <p className="text-sm">
-            {service.servicedescription?.slice(0, 150)}...
-          </p>
-        </div>
+        {services.map((service) => (
+          <div key={service._id} className="w-full md:w-1/2 lg:w-1/3 p-4">
+            <div className="custom-card text-center shadow-md">
+              <div className="mb-4">
+                <img
+                  src={`http://localhost:5000/${service.image}`}
+                  alt={service.name}
+                  className="mx-auto h-16 w-16"
+                />
+              </div>
+              <div>
+                <h5 className="text-lg font-semibold mb-2">
+                  <a
+                    href={`/service/view/${service._id}`}
+                    className="hover:underline"
+                  >
+                    {service.servicename}
+                  </a>
+                </h5>
+                <p className="text-sm">
+                  {service.servicedescription?.slice(0, 150)}...
+                </p>
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
-    </div>
-  ))}
-</div>
-
     </div>
   );
 };

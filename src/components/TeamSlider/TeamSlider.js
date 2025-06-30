@@ -5,17 +5,14 @@ import { FaTwitter, FaLinkedin } from "react-icons/fa";
 import { toast } from "react-toastify";
 import axios from "axios";
 
- 
-
 const TeamSlider = () => {
-
-const [teamData, setTeams] = useState([]);
+  const [teamData, setTeams] = useState([]);
   const [loadingId, setLoadingId] = useState(null); // To show spinner on the specific delete button
 
   // Fetch services
   const fetchServices = () => {
     axios
-      .get("https://atcbd-backend-production.up.railway.app/api/team/all")
+      .get("http://localhost:5000/api/team/all")
       .then((res) => setTeams(res.data))
       .catch((err) => {
         console.error("Fetch error:", err);
@@ -23,22 +20,9 @@ const [teamData, setTeams] = useState([]);
       });
   };
 
-
-
-
-useEffect(() => {
+  useEffect(() => {
     fetchServices();
   }, []);
-
-
-
-
-
-
-
-
-
-
 
   const settings = {
     dots: true,
@@ -77,7 +61,7 @@ useEffect(() => {
             <div className="bg-white rounded-2xl shadow-md text-center p-4">
               <div className="mb-4">
                 <img
-                   src={`https://atcbd-backend-production.up.railway.app/api/${member.image}`}
+                  src={`http://localhost:5000/${member.image}`}
                   alt={member.name}
                   className="w-full h-72 object-cover rounded-xl"
                 />
@@ -85,22 +69,20 @@ useEffect(() => {
               <h3 className="text-xl font-semibold">{member.membername}</h3>
               <p className="text-gray-600 mb-2">{member.memberdesignation}</p>
               <div className="flex justify-center gap-4 text-blue-600 mt-3">
-                <a href="" >
+                <a href="">
                   <FaPhone className="hover:text-green-600" />
                 </a>
-                <a href= "">
+                <a href="">
                   <FaEnvelope className="hover:text-red-500" />
                 </a>
-                
-                  <a href="#">
-                    <FaTwitter className="hover:text-sky-400" />
-                  </a>
-               
-             
-                  <a href="#">
-                    <FaLinkedin className="hover:text-blue-800" />
-                  </a>
-                
+
+                <a href="#">
+                  <FaTwitter className="hover:text-sky-400" />
+                </a>
+
+                <a href="#">
+                  <FaLinkedin className="hover:text-blue-800" />
+                </a>
               </div>
             </div>
           </div>

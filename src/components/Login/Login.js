@@ -1,21 +1,23 @@
 import React, { useState } from "react";
-import axios from 'axios';
+import axios from "axios";
 import {
   FaGooglePlusG,
   FaFacebookF,
   FaGithub,
   FaLinkedinIn,
-  FaUser, FaEnvelope, FaLock,
+  FaUser,
+  FaEnvelope,
+  FaLock,
 } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 // import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
 
 const Login = () => {
-const [userData, setUserData] = useState({
-    name: '',
-    email: '',
-    password: ''
+  const [userData, setUserData] = useState({
+    name: "",
+    email: "",
+    password: "",
   });
 
   const handleChange = (e) => {
@@ -25,50 +27,49 @@ const [userData, setUserData] = useState({
   const register = async (e) => {
     e.preventDefault(); // Prevent page reload
     try {
-      const res = await axios.post('https://atcbd-backend-production.up.railway.app/api/auth/register', userData);
+      const res = await axios.post(
+        "http://localhost:5000/api/auth/register",
+        userData
+      );
       alert(res.data.message);
-      console.log(userData)
-      setUserData({ name: '', email: '', password: '' }); // Clear form
+      console.log(userData);
+      setUserData({ name: "", email: "", password: "" }); // Clear form
     } catch (err) {
-      alert(err.response?.data?.error || 'Registration failed');
+      alert(err.response?.data?.error || "Registration failed");
     }
   };
 
+  //login///
 
-//login///
-
-const [formData, setFormData] = useState({ email: '', password: '' });
+  const [formData, setFormData] = useState({ email: "", password: "" });
   const navigate = useNavigate();
 
   const LoginhandleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  try {
-    const res = await axios.post("https://atcbd-backend-production.up.railway.app/api/auth/login", formData);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post(
+        "http://localhost:5000/api/auth/login",
+        formData
+      );
 
-    if (res.data.token) {
-      localStorage.setItem("userToken", res.data.token);
-      localStorage.setItem("userInfo", JSON.stringify(res.data.user)); // optional
-      toast.success("Login successful");
-      setTimeout(() => {
-    navigate("/dashboard");
-  }, 50);
-      console.log("Login successful, token:", res.data.token);
- 
-   
-    } else {
-      toast.error("Login failed: Token not received");
+      if (res.data.token) {
+        localStorage.setItem("userToken", res.data.token);
+        localStorage.setItem("userInfo", JSON.stringify(res.data.user)); // optional
+        toast.success("Login successful");
+        setTimeout(() => {
+          navigate("/dashboard");
+        }, 50);
+        console.log("Login successful, token:", res.data.token);
+      } else {
+        toast.error("Login failed: Token not received");
+      }
+    } catch (err) {
+      toast.error(err.response?.data?.error || "Login failed");
     }
-  } catch (err) {
-    toast.error(err.response?.data?.error || "Login failed");
-  }
-};
-
-
-
-
+  };
 
   const IconButton = ({ Icon }) => (
     <a
@@ -100,54 +101,45 @@ const handleSubmit = async (e) => {
               <IconButton Icon={FaLinkedinIn} />
             </div>
             <span className="text-sm mb-3">or use your email password</span>
-             {/* //login form  */}
-           <form className="space-y-5" onSubmit={handleSubmit}>
-      <div className="relative">
-        <FaEnvelope className="absolute top-3.5 left-3 text-gray-400" />
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={formData.email}
-          onChange={LoginhandleChange}
-          className="pl-10 w-full border rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-400"
-          required
-        />
-      </div>
-      <div className="relative">
-        <FaLock className="absolute top-3.5 left-3 text-gray-400" />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={formData.password}
-          onChange={LoginhandleChange}
-          className="pl-10 w-full border rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-400"
-          required
-        />
-      </div>
-      <div className="text-sm text-right">
-        <a href="/" className="text-indigo-600 hover:underline">Forgot password?</a>
-      </div>
-      <button
-        type="submit"
-        className="w-full bg-[#F16022] text-white py-2 rounded-md hover:bg-indigo-700 transition"
-      >
-        Sign In
-      </button>
-    </form>
-           </div>
-
-
-
-
-
-
-
-
-
-
-
+            {/* //login form  */}
+            <form className="space-y-5" onSubmit={handleSubmit}>
+              <div className="relative">
+                <FaEnvelope className="absolute top-3.5 left-3 text-gray-400" />
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  value={formData.email}
+                  onChange={LoginhandleChange}
+                  className="pl-10 w-full border rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                  required
+                />
+              </div>
+              <div className="relative">
+                <FaLock className="absolute top-3.5 left-3 text-gray-400" />
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  value={formData.password}
+                  onChange={LoginhandleChange}
+                  className="pl-10 w-full border rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                  required
+                />
+              </div>
+              <div className="text-sm text-right">
+                <a href="/" className="text-indigo-600 hover:underline">
+                  Forgot password?
+                </a>
+              </div>
+              <button
+                type="submit"
+                className="w-full bg-[#F16022] text-white py-2 rounded-md hover:bg-indigo-700 transition"
+              >
+                Sign In
+              </button>
+            </form>
+          </div>
 
           {/* Sign Up Form */}
           <div
@@ -165,72 +157,54 @@ const handleSubmit = async (e) => {
             <span className="text-sm mb-3">
               or use your email for registration
             </span>
-          <form className="space-y-5" onSubmit={register}>
-      <div className="relative">
-        <FaUser className="absolute top-3.5 left-3 text-gray-400" />
-        <input
-          type="text"
-          name="name"
-          value={userData.name}
-          onChange={handleChange}
-          placeholder="Full Name"
-          className="pl-10 w-full border rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-400"
-          required
-        />
-      </div>
+            <form className="space-y-5" onSubmit={register}>
+              <div className="relative">
+                <FaUser className="absolute top-3.5 left-3 text-gray-400" />
+                <input
+                  type="text"
+                  name="name"
+                  value={userData.name}
+                  onChange={handleChange}
+                  placeholder="Full Name"
+                  className="pl-10 w-full border rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                  required
+                />
+              </div>
 
-      <div className="relative">
-        <FaEnvelope className="absolute top-3.5 left-3 text-gray-400" />
-        <input
-          type="email"
-          name="email"
-          value={userData.email}
-          onChange={handleChange}
-          placeholder="Email"
-          className="pl-10 w-full border rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-400"
-          required
-        />
-      </div>
+              <div className="relative">
+                <FaEnvelope className="absolute top-3.5 left-3 text-gray-400" />
+                <input
+                  type="email"
+                  name="email"
+                  value={userData.email}
+                  onChange={handleChange}
+                  placeholder="Email"
+                  className="pl-10 w-full border rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                  required
+                />
+              </div>
 
-      <div className="relative">
-        <FaLock className="absolute top-3.5 left-3 text-gray-400" />
-        <input
-          type="password"
-          name="password"
-          value={userData.password}
-          onChange={handleChange}
-          placeholder="Password"
-          className="pl-10 w-full border rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-400"
-          required
-        />
-      </div>
+              <div className="relative">
+                <FaLock className="absolute top-3.5 left-3 text-gray-400" />
+                <input
+                  type="password"
+                  name="password"
+                  value={userData.password}
+                  onChange={handleChange}
+                  placeholder="Password"
+                  className="pl-10 w-full border rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                  required
+                />
+              </div>
 
-      <button
-        type="submit"
-        className="w-full bg-[#F16022] text-white py-2 rounded-md hover:bg-indigo-700 transition"
-      >
-        Sign Up
-      </button>
-    </form>
-             
+              <button
+                type="submit"
+                className="w-full bg-[#F16022] text-white py-2 rounded-md hover:bg-indigo-700 transition"
+              >
+                Sign Up
+              </button>
+            </form>
           </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
           {/* Toggle Panel */}
           <div

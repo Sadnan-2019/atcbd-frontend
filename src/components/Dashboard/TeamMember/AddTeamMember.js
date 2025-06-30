@@ -1,10 +1,10 @@
-import axios from 'axios';
-import React from 'react';
-import { useForm } from 'react-hook-form';
-import { toast } from 'react-toastify';
+import axios from "axios";
+import React from "react";
+import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 const AddTeamMember = () => {
- const {
+  const {
     register,
     formState: { errors },
     handleSubmit,
@@ -18,11 +18,15 @@ const AddTeamMember = () => {
       formData.append("memberdesignation", data.memberdesignation);
       formData.append("file", data.file[0]);
 
-      const response = await axios.post("https://atcbd-backend-production.up.railway.app/api/team/add", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      const response = await axios.post(
+        "http://localhost:5000/api/team/add",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
 
       if (response) {
         reset();
@@ -35,11 +39,10 @@ const AddTeamMember = () => {
     }
   };
 
-
-     return (
-          <div>
-               <h1 className="text-black py-4 text-center">Add Tem Member </h1>
-                  <form onSubmit={handleSubmit(onSubmit)} enctype="multipart/form-data">
+  return (
+    <div>
+      <h1 className="text-black py-4 text-center">Add Tem Member </h1>
+      <form onSubmit={handleSubmit(onSubmit)} enctype="multipart/form-data">
         <div className="form-control w-full mx-auto max-w-xs">
           <label className="label">
             <span className="label-text text-black"> Member Name</span>
@@ -67,7 +70,7 @@ const AddTeamMember = () => {
         </div>
         <div className="form-control w-full mx-auto max-w-xs">
           <label className="label">
-            <span className="label-text text-black">Member  Designation</span>
+            <span className="label-text text-black">Member Designation</span>
           </label>
           <textarea
             {...register("memberdesignation", {
@@ -124,8 +127,8 @@ const AddTeamMember = () => {
           />
         </div>
       </form>
-          </div>
-     );
+    </div>
+  );
 };
 
 export default AddTeamMember;

@@ -1,16 +1,14 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 const ManageServices = () => {
-
-
-     const [services, setServices] = useState([]);
+  const [services, setServices] = useState([]);
   const [loadingId, setLoadingId] = useState(null); // To show spinner on the specific delete button
 
   // Fetch services
   const fetchServices = () => {
     axios
-      .get("https://atcbd-backend-production.up.railway.app/api/services/all")
+      .get("http://localhost:5000/api/services/all")
       .then((res) => setServices(res.data))
       .catch((err) => {
         console.error("Fetch error:", err);
@@ -25,7 +23,7 @@ const ManageServices = () => {
 
     try {
       setLoadingId(id);
-      await axios.delete(`https://atcbd-backend-production.up.railway.app/api/services/${id}`);
+      await axios.delete(`http://localhost:5000/api/services/${id}`);
       setServices((prev) => prev.filter((service) => service._id !== id));
       toast.success("Service deleted successfully.");
     } catch (err) {
@@ -40,65 +38,65 @@ const ManageServices = () => {
     fetchServices();
   }, []);
 
-     return (
-          <div>
-        <div className="overflow-x-auto w-full p-4">
-      <table className="table table-zebra w-full border border-gray-300">
-        <thead>
-          <tr className="bg-gray-100">
-            <th>#</th>
-            <th>Service Name</th>
-            <th>Description</th>
-            <th>Image</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody className='text-black'>
-          {services.map((service, index) => (
-            <tr key={service._id}>
-              <td>{index + 1}</td>
-              <td>{service.servicename}</td>
-              <td>{service.servicedescription}</td>
-              <td>
-                <img
-                  src={`http://localhost:5000/${service.image}`}
-                  alt="Service"
-                  className="w-16 h-16 object-cover"
-                />
-              </td>
-              <td>
-                <button
-                  onClick={() => handleDelete(service._id)}
-                  className="btn btn-sm bg-red-600 text-white hover:bg-red-700 flex items-center"
-                  disabled={loadingId === service._id}
-                >
-                  {loadingId === service._id ? (
-                    <span className="loading loading-spinner loading-sm text-white"></span>
-                  ) : (
-                    "Edit"
-                  )}
-                </button>
-              </td>
-              <td>
-                <button
-                  onClick={() => handleDelete(service._id)}
-                  className="btn btn-sm bg-red-600 text-white hover:bg-red-700 flex items-center"
-                  disabled={loadingId === service._id}
-                >
-                  {loadingId === service._id ? (
-                    <span className="loading loading-spinner loading-sm text-white"></span>
-                  ) : (
-                    "Delete"
-                  )}
-                </button>
-              </td>
+  return (
+    <div>
+      <div className="overflow-x-auto w-full p-4">
+        <table className="table table-zebra w-full border border-gray-300">
+          <thead>
+            <tr className="bg-gray-100">
+              <th>#</th>
+              <th>Service Name</th>
+              <th>Description</th>
+              <th>Image</th>
+              <th>Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody className="text-black">
+            {services.map((service, index) => (
+              <tr key={service._id}>
+                <td>{index + 1}</td>
+                <td>{service.servicename}</td>
+                <td>{service.servicedescription}</td>
+                <td>
+                  <img
+                    src={`http://localhost:5000/${service.image}`}
+                    alt="Service"
+                    className="w-16 h-16 object-cover"
+                  />
+                </td>
+                <td>
+                  <button
+                    onClick={() => handleDelete(service._id)}
+                    className="btn btn-sm bg-red-600 text-white hover:bg-red-700 flex items-center"
+                    disabled={loadingId === service._id}
+                  >
+                    {loadingId === service._id ? (
+                      <span className="loading loading-spinner loading-sm text-white"></span>
+                    ) : (
+                      "Edit"
+                    )}
+                  </button>
+                </td>
+                <td>
+                  <button
+                    onClick={() => handleDelete(service._id)}
+                    className="btn btn-sm bg-red-600 text-white hover:bg-red-700 flex items-center"
+                    disabled={loadingId === service._id}
+                  >
+                    {loadingId === service._id ? (
+                      <span className="loading loading-spinner loading-sm text-white"></span>
+                    ) : (
+                      "Delete"
+                    )}
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
-          </div>
-     );
+  );
 };
 
 export default ManageServices;

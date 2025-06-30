@@ -3,24 +3,22 @@ import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 const Products = () => {
-const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState([]);
 
   const fetchServices = () => {
-  axios
-    .get("https://atcbd-backend-production.up.railway.app/api/categories/all")
-    .then((res) => setCategories(res.data))
-    .catch((err) => {
-      console.error("Fetch error:", err);
-      toast.error("Failed to fetch categories.");
-    });
-};
+    axios
+      .get("http://localhost:5000/api/categories/all")
+      .then((res) => setCategories(res.data))
+      .catch((err) => {
+        console.error("Fetch error:", err);
+        toast.error("Failed to fetch categories.");
+      });
+  };
 
-useEffect(() => {
-  fetchServices();
-}, []);
+  useEffect(() => {
+    fetchServices();
+  }, []);
   return (
-
-
     <div>
       <div className=" ">
         <h1 className="text-3xl text-center text-[#2C234D]  font-bold poppins-b sm:text-4xl py-2">
@@ -33,19 +31,18 @@ useEffect(() => {
       </div>
 
       <div className="w-full px-4">
-  <div className="flex flex-wrap justify-center gap-2 pb-6 text-center">
-    {categories.map((category) => (
-      <button
-        key={category._id}
-        // onClick={() => handleCategoryClick(category._id)}
-        className="bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-md mb-1"
-      >
-        {category.categoryname}
-      </button>
-    ))}
-  </div>
-</div>
-
+        <div className="flex flex-wrap justify-center gap-2 pb-6 text-center">
+          {categories.map((category) => (
+            <button
+              key={category._id}
+              // onClick={() => handleCategoryClick(category._id)}
+              className="bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-md mb-1"
+            >
+              {category.categoryname}
+            </button>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };

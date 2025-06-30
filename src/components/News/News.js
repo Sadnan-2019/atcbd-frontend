@@ -4,17 +4,14 @@ import "slick-carousel/slick/slick-theme.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
- 
-
 const News = () => {
-
-const [blogData, setNewsList] = useState([]);
+  const [blogData, setNewsList] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const res = await axios.get("https://atcbd-backend-production.up.railway.app/api/news/all");
+        const res = await axios.get("http://localhost:5000/api/news/all");
         setNewsList(res.data);
         setLoading(false);
       } catch (error) {
@@ -28,14 +25,6 @@ const [blogData, setNewsList] = useState([]);
 
   if (loading) return <p className="text-center">Loading...</p>;
 
-
-
-
-
-
-
-
-  
   const settings = {
     dots: true,
     arrows: true,
@@ -59,9 +48,9 @@ const [blogData, setNewsList] = useState([]);
 
   return (
     <div className="full-width-slider  py-8 px-2 bg-white">
-<div className=" ">
+      <div className=" ">
         <h1 className="text-3xl text-center text-[#2C234D]  font-bold poppins-b sm:text-4xl py-2">
-         Our News
+          Our News
         </h1>
 
         {/* <p className=" lg:text-xl text-center text-[#E0581E] font-semibold   sm:text-4xl py-2">
@@ -75,15 +64,14 @@ const [blogData, setNewsList] = useState([]);
             <div className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300">
               <div className="relative">
                 <img
-                 src={`http://localhost:5000/${item.image}`}
+                  src={`http://localhost:5000/${item.image}`}
                   alt=""
                   className="w-full h-56 object-cover"
                 />
                 <div className="absolute top-3 left-3 bg-primary text-white p-2 rounded-lg text-center ">
-                 
                   <p className="text-lg  text-gray-100">
-                {new Date(item.publishDate).toLocaleDateString()}
-              </p>
+                    {new Date(item.publishDate).toLocaleDateString()}
+                  </p>
                 </div>
               </div>
               <div className="p-4">
