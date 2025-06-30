@@ -3,11 +3,18 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 const AddCategories = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   const onSubmit = async (data) => {
     try {
-      const res = await axios.post("http://localhost:5000/api/categories/add-category", data);
+      const res = await axios.post(
+        "https://atcbd-backend.onrender.com/api/categories/add-category",
+        data
+      );
       toast.success(res.data.message);
     } catch (err) {
       toast.error(err.response?.data?.error || "Something went wrong");

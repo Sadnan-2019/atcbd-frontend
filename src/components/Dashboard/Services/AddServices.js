@@ -17,10 +17,13 @@ const AddServices = () => {
       formData.append("servicedescription", data.servicedescription);
       formData.append("file", data.file[0]); // Assuming "file" is the name of the file input
 
-      const response = await fetch("http://localhost:5000/api/services", {
-        method: "POST",
-        body: formData,
-      });
+      const response = await fetch(
+        "https://atcbd-backend.onrender.com/api/services",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
       if (response.ok) {
         reset();
         toast.success("Service Add successfully.");

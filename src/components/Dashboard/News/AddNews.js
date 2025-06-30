@@ -21,7 +21,7 @@ const AddNews = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/news/add-news",
+        "https://atcbd-backend.onrender.com/api/news/add-news",
         formData,
         {
           headers: {
@@ -83,26 +83,27 @@ const AddNews = () => {
                 />
               )}
             /> */}
-<Controller
-  name="publishDate"
-  control={control}
-  rules={{ required: "Publish Date is required" }}
-  render={({ field }) => (
-    <div>
-      <DayPicker
-       className="   max-w-xs bg-blue text-black"
-        mode="single"
-        selected={field.value}
-        onSelect={(date) => field.onChange(date)}
-        dateFormat="yyyy-MM-dd"
-      />
-      {errors.publishDate && (
-        <p className="text-red-500 text-sm mt-1">{errors.publishDate.message}</p>
-      )}
-    </div>
-  )}
-/>
-
+            <Controller
+              name="publishDate"
+              control={control}
+              rules={{ required: "Publish Date is required" }}
+              render={({ field }) => (
+                <div>
+                  <DayPicker
+                    className="   max-w-xs bg-blue text-black"
+                    mode="single"
+                    selected={field.value}
+                    onSelect={(date) => field.onChange(date)}
+                    dateFormat="yyyy-MM-dd"
+                  />
+                  {errors.publishDate && (
+                    <p className="text-red-500 text-sm mt-1">
+                      {errors.publishDate.message}
+                    </p>
+                  )}
+                </div>
+              )}
+            />
 
             {errors.publishDate && (
               <label className="label">

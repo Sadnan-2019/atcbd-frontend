@@ -13,7 +13,7 @@ const Services = () => {
   const fetchServices = () => {
     axios
       // .get(`${process.env.REACT_APP_API_URL}/api/services/all`)
-      .get("http://localhost:5000/api/services/all")
+      .get("https://atcbd-backend.onrender.com/api/services/all")
       .then((res) => setServices(res.data))
       .catch((err) => {
         console.error("Fetch error:", err);
@@ -38,7 +38,7 @@ const Services = () => {
             <div className="custom-card text-center shadow-md">
               <div className="mb-4">
                 <img
-                  src={`http://localhost:5000/${service.image}`}
+                  src={`https://atcbd-backend.onrender.com/${service.image}`}
                   alt={service.name}
                   className="mx-auto h-16 w-16"
                 />
