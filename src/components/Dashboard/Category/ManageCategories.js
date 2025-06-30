@@ -9,7 +9,7 @@ const ManageCategories = () => {
   // Fetch services
   const fetchServices = () => {
     axios
-      .get("http://localhost:5000/api/categories/all")
+      .get("https://atcbd-backend-production.up.railway.app/api/categories/all")
       .then((res) => setCategories(res.data))
       .catch((err) => {
         console.error("Fetch error:", err);
@@ -24,7 +24,7 @@ const ManageCategories = () => {
 
     try {
       setLoadingId(id);
-      await axios.delete(`http://localhost:5000/api/categories/${id}`);
+      await axios.delete(`https://atcbd-backend-production.up.railway.app/api/categories/${id}`);
       setCategories((prev) => prev.filter((category) => category._id !== id));
       toast.success("Categories deleted successfully.");
     } catch (err) {

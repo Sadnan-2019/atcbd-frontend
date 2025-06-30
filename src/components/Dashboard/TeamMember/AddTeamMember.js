@@ -18,7 +18,7 @@ const AddTeamMember = () => {
       formData.append("memberdesignation", data.memberdesignation);
       formData.append("file", data.file[0]);
 
-      const response = await axios.post("http://localhost:5000/api/team/add", formData, {
+      const response = await axios.post("https://atcbd-backend-production.up.railway.app/api/team/add", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

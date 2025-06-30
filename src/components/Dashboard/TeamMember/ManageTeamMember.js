@@ -9,7 +9,7 @@ const ManageTeamMember = () => {
   // Fetch services
   const fetchServices = () => {
     axios
-      .get("http://localhost:5000/api/team/all")
+      .get("https://atcbd-backend-production.up.railway.app/api/team/all")
       .then((res) => setTeams(res.data))
       .catch((err) => {
         console.error("Fetch error:", err);
@@ -24,7 +24,7 @@ const ManageTeamMember = () => {
 
     try {
       setLoadingId(id);
-      await axios.delete(`http://localhost:5000/api/team/${id}`);
+      await axios.delete(`https://atcbd-backend-production.up.railway.app/api/team/${id}`);
       setTeams((prev) => prev.filter((team) => team._id !== id));
       toast.success("Team Menber deleted successfully.");
     } catch (err) {

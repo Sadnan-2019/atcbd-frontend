@@ -83,15 +83,14 @@ const Dashboard = () => {
               <summary class=" p-3 rounded-lg cursor-pointer shadow">
                 <span class="font-semibold text-white">News</span>
               </summary>
-              <div class="  p-1">
-                {/* <p class="text-white">Add Doctor</p> */}
-                <li><Link to="/dashboard/add-news">Add News</Link></li>
+              {/* <div class="  p-1">
+                 <li><Link to="/dashboard/add-news">Add News</Link></li>
               </div>
               <div class="  p-1">
                 <li>
                   <Link to="/dashboard/manage-news">Manage News</Link>
                 </li>
-              </div>
+              </div> */}
             </details>
           </li>
           <li>

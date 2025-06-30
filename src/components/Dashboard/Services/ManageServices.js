@@ -10,7 +10,7 @@ const ManageServices = () => {
   // Fetch services
   const fetchServices = () => {
     axios
-      .get("http://localhost:5000/api/services/all")
+      .get("https://atcbd-backend-production.up.railway.app/api/services/all")
       .then((res) => setServices(res.data))
       .catch((err) => {
         console.error("Fetch error:", err);
@@ -25,7 +25,7 @@ const ManageServices = () => {
 
     try {
       setLoadingId(id);
-      await axios.delete(`http://localhost:5000/api/services/${id}`);
+      await axios.delete(`https://atcbd-backend-production.up.railway.app/api/services/${id}`);
       setServices((prev) => prev.filter((service) => service._id !== id));
       toast.success("Service deleted successfully.");
     } catch (err) {

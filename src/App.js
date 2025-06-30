@@ -19,7 +19,7 @@ import ManageTeamMember from './components/Dashboard/TeamMember/ManageTeamMember
 import Navbar from './components/Nav/Navbar';
 import NewNav from './components/Nav/HeaderNavBar';
 import HeaderNavBar from './components/Nav/HeaderNavBar';
-import AddNews from './components/Dashboard/News/AddNews';
+// import AddNews from './components/Dashboard/News/AddNews';
 import MyDashbaord from './components/Dashboard/MyDashbaord/MyDashbaord';
 import { useState } from 'react';
  
@@ -60,7 +60,7 @@ function App() {
      <Route path="manage-category" element={<ProtectedRoute><ManageCategories /></ProtectedRoute>} />
      <Route path="add-team-member" element={<ProtectedRoute><AddTeamMember /></ProtectedRoute>} />
      <Route path="manage-team-member" element={<ProtectedRoute><ManageTeamMember /></ProtectedRoute>} />
-     <Route path="add-news" element={<ProtectedRoute><AddNews /></ProtectedRoute>} />
+     {/* <Route path="add-news" element={<ProtectedRoute><AddNews /></ProtectedRoute>} /> */}
          
         </Route>
  </Routes>

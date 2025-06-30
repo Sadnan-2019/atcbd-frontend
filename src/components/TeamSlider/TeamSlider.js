@@ -77,7 +77,7 @@ useEffect(() => {
             <div className="bg-white rounded-2xl shadow-md text-center p-4">
               <div className="mb-4">
                 <img
-                   src={`http://localhost:5000/${member.image}`}
+                   src={`https://atcbd-backend-production.up.railway.app/api/${member.image}`}
                   alt={member.name}
                   className="w-full h-72 object-cover rounded-xl"
                 />

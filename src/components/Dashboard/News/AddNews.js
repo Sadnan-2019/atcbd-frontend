@@ -21,7 +21,7 @@ const AddNews = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/news/add-news",
+        "https://atcbd-backend-production.up.railway.app/api/news/add-news",
         formData,
         {
           headers: {
