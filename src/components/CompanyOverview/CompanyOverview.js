@@ -2,7 +2,7 @@ import React from 'react';
 
 const CompanyOverview = () => {
      return (
-          <div>
+          <div className='bg-white'>
                <div class="container mx-auto px-4 py-12">
   <div class="flex flex-col lg:flex-row items-center gap-10">
     

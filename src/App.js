@@ -26,7 +26,7 @@ import { useState } from 'react';
 function App() {
   //  const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
-    <div className=" ">
+    <div className=" min-h-screen bg-base-100 text-black ">
        <TopNav></TopNav>
        <Nav></Nav>
        {/* <Navbar></Navbar> */}

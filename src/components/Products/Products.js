@@ -19,7 +19,7 @@ const Products = () => {
     fetchServices();
   }, []);
   return (
-    <div>
+    <div className="bg-gray-50">
       <div className=" ">
         <h1 className="text-3xl text-center text-[#2C234D]  font-bold poppins-b sm:text-4xl py-2">
           Our Products

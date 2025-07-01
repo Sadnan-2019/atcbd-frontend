@@ -2,7 +2,7 @@ import React from 'react';
 
 const Quote = () => {
      return (
-          <div className='py-28'>
+          <div className='py-28 bg-white'>
               <section
   class="bg-cover bg-center py-28 px-4 md:px-8"
   style={{backgroundImage:"url('https://i.ibb.co/9969ttv0/b9f3cb9e-9d6f-421a-b890-543fe207f8c1.jpg'"}}
