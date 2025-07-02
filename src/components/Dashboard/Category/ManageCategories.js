@@ -9,7 +9,7 @@ const ManageCategories = () => {
   // Fetch services
   const fetchServices = () => {
     axios
-      .get("https://atcbd-backend.onrender.com/api/categories/all")
+      .get("http://localhost:5000/api/categories/all")
       .then((res) => setCategories(res.data))
       .catch((err) => {
         console.error("Fetch error:", err);
@@ -24,9 +24,7 @@ const ManageCategories = () => {
 
     try {
       setLoadingId(id);
-      await axios.delete(
-        `https://atcbd-backend.onrender.com/api/categories/${id}`
-      );
+      await axios.delete(`http://localhost:5000/api/categories/${id}`);
       setCategories((prev) => prev.filter((category) => category._id !== id));
       toast.success("Categories deleted successfully.");
     } catch (err) {

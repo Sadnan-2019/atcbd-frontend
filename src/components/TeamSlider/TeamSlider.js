@@ -12,7 +12,7 @@ const TeamSlider = () => {
   // Fetch services
   const fetchServices = () => {
     axios
-      .get("https://atcbd-backend.onrender.com/api/team/all")
+      .get("http://localhost:5000/api/team/all")
       .then((res) => setTeams(res.data))
       .catch((err) => {
         console.error("Fetch error:", err);
@@ -61,7 +61,7 @@ const TeamSlider = () => {
             <div className="bg-white rounded-2xl shadow-md text-center p-4">
               <div className="mb-4">
                 <img
-                  src={`https://atcbd-backend.onrender.com/${member.image}`}
+                  src={`http://localhost:5000/${member.image}`}
                   alt={member.name}
                   className="w-full h-72 object-cover rounded-xl"
                 />

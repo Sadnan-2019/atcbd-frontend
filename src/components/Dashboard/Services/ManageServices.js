@@ -8,7 +8,7 @@ const ManageServices = () => {
   // Fetch services
   const fetchServices = () => {
     axios
-      .get("https://atcbd-backend.onrender.com/api/services/all")
+      .get("http://localhost:5000/api/services/all")
       .then((res) => setServices(res.data))
       .catch((err) => {
         console.error("Fetch error:", err);
@@ -23,9 +23,7 @@ const ManageServices = () => {
 
     try {
       setLoadingId(id);
-      await axios.delete(
-        `https://atcbd-backend.onrender.com/api/services/${id}`
-      );
+      await axios.delete(`http://localhost:5000/api/services/${id}`);
       setServices((prev) => prev.filter((service) => service._id !== id));
       toast.success("Service deleted successfully.");
     } catch (err) {
@@ -61,7 +59,7 @@ const ManageServices = () => {
                 <td>{service.servicedescription}</td>
                 <td>
                   <img
-                    src={`https://atcbd-backend.onrender.com/${service.image}`}
+                    src={`http://localhost:5000/${service.image}`}
                     alt="Service"
                     className="w-16 h-16 object-cover"
                   />

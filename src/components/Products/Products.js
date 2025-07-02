@@ -7,7 +7,7 @@ const Products = () => {
 
   const fetchServices = () => {
     axios
-      .get("https://atcbd-backend.onrender.com/api/categories/all")
+      .get("http://localhost:5000/api/categories/all")
       .then((res) => setCategories(res.data))
       .catch((err) => {
         console.error("Fetch error:", err);
