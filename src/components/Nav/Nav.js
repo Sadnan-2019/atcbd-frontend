@@ -23,6 +23,7 @@ const Nav = () => {
   const [mobileOpenDropdown, setMobileOpenDropdown] = useState(""); // "service", "product", ""
   const [mobileOpenSubDropdown, setMobileOpenSubDropdown] = useState(""); // "product1", ""
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedAdminIn, setAdminLoggedIn] = useState(false);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -36,15 +37,20 @@ const Nav = () => {
 
   useEffect(() => {
     const token = localStorage.getItem("userToken");
+    const admintoken = localStorage.getItem("adminToken");
     setIsLoggedIn(!!token);
+    setAdminLoggedIn(!!admintoken)
   }, [location]);
 
   const handleLogout = () => {
     localStorage.removeItem("userToken");
     localStorage.removeItem("userInfo");
+    localStorage.removeItem("adminToken");
+    localStorage.removeItem("adminInfo");
     setIsLoggedIn(false);
+    setAdminLoggedIn(false)
     toast.success("Logged out successfully");
-    navigate("/login");
+    navigate("/users-login");
   };
 
   const active =
@@ -239,12 +245,43 @@ const Nav = () => {
           Contact
         </NavLink>
       </li>
-      {!isLoggedIn ? (
+      {/* {!isLoggedIn ? (
         <li className="nav-item p-2">
           <NavLink to="/login" className={({ isActive }) => (isActive ? active : normal)}>
             Login
           </NavLink>
+      
         </li>
+        
+      ) : (
+        <>
+          <li className="nav-item p-2">
+            <NavLink className={({ isActive }) => (isActive ? active : normal)} to="/dashboard">
+              Dashboard
+            </NavLink>
+          </li>
+          <li className="nav-item p-2">
+            <button
+              onClick={handleLogout}
+              className="btn btn-sm bg-red-500 text-white px-3 py-1 rounded hover:bg-red-700 transition"
+            >
+              Logout
+            </button>
+          </li>
+        </>
+      )} */}
+
+
+
+
+      {!isLoggedAdminIn ? (
+        <li className="nav-item p-2">
+          
+          <NavLink to="/users-login" className={({ isActive }) => (isActive ? active : normal)}>
+            User Login
+          </NavLink>
+        </li>
+        
       ) : (
         <>
           <li className="nav-item p-2">
