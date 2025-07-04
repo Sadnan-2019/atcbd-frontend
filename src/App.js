@@ -22,6 +22,7 @@ import HeaderNavBar from "./components/Nav/HeaderNavBar";
 import AddNews from "./components/Dashboard/News/AddNews";
 import MyDashbaord from "./components/Dashboard/MyDashbaord/MyDashbaord";
 import { useState } from "react";
+import Users from "./components/Dashboard/MyDashbaord/Users";
 // import Users from "./components/Dashboard/MyDashbaord/Users";
 
 function App() {
@@ -35,7 +36,7 @@ function App() {
 
       <Routes>
         <Route path="/login" element={<Login />}></Route>
-        {/* <Route path="/users-login" element={<Users />}></Route> */}
+        <Route path="/users-login" element={<Users />}></Route>
 
         <Route path="/" element={<Home />}></Route>
 

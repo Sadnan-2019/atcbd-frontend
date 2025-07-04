@@ -6,15 +6,18 @@ import { toast } from "react-toastify";
 const Nav = () => {
   const [serviceOpen, setServiceOpen] = useState(false);
   const [productOpen, setProductOpen] = useState(false);
-  const navigate = useNavigate();
-  const location = useLocation(); // 👈 triggers re-render on route change
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileServiceOpen, setMobileServiceOpen] = useState(false);
+  const [mobileProductOpen, setMobileProductOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  // ✅ Check login status whenever route changes
+  const navigate = useNavigate();
+  const location = useLocation();
+
   useEffect(() => {
     const token = localStorage.getItem("userToken");
     setIsLoggedIn(!!token);
-  }, [location]); // 👈 run when location changes
+  }, [location]);
 
   const handleLogout = () => {
     localStorage.removeItem("userToken");
@@ -24,13 +27,12 @@ const Nav = () => {
     navigate("/login");
   };
 
-  // Menu item styles
   const active =
-    "text-white mx-1 font-medium border-b-2 border-white-900 pb-1   transition bg-[#F15F22]   hover:bg-opacity-40 active:bg-[#F15F22] shadow-md rounded-md px-2";
+    "text-white mx-1 font-medium border-b-2 border-white-900 pb-1 transition bg-[#F15F22] hover:bg-opacity-40 active:bg-[#F15F22] shadow-md rounded-md px-2";
   const normal =
     "mx-1 text-white-600 font-medium font-bold focus:text-white p-0 lg:text-black";
 
-  // Dropdown menu for Service
+  // --- Dropdown for Service ---
   const serviceDropdown = (
     <div
       className="relative"
@@ -44,19 +46,13 @@ const Nav = () => {
       >
         <span className="whitespace-nowrap">Service</span>
         <svg
-          className={`w-4 h-4 transition-transform ${
-            serviceOpen ? "rotate-180" : ""
-          }`}
+          className={`w-4 h-4 transition-transform ${serviceOpen ? "rotate-180" : ""}`}
           fill="none"
           stroke="currentColor"
           strokeWidth={2}
           viewBox="0 0 24 24"
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M19 9l-7 7-7-7"
-          />
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
         </svg>
       </button>
       <ul
@@ -86,7 +82,7 @@ const Nav = () => {
     </div>
   );
 
-  // Dropdown menu for Product
+  // --- Dropdown for Product ---
   const productDropdown = (
     <div
       className="relative"
@@ -100,19 +96,13 @@ const Nav = () => {
       >
         <span className="whitespace-nowrap">Product</span>
         <svg
-          className={`w-4 h-4 transition-transform ${
-            productOpen ? "rotate-180" : ""
-          }`}
+          className={`w-4 h-4 transition-transform ${productOpen ? "rotate-180" : ""}`}
           fill="none"
           stroke="currentColor"
           strokeWidth={2}
           viewBox="0 0 24 24"
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M19 9l-7 7-7-7"
-          />
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
         </svg>
       </button>
       <ul
@@ -142,18 +132,64 @@ const Nav = () => {
     </div>
   );
 
-  // Mobile menu state
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [mobileServiceOpen, setMobileServiceOpen] = useState(false);
-  const [mobileProductOpen, setMobileProductOpen] = useState(false);
+  // --- Desktop Nav Items ---
+  const desktopNavItem = (
+    <>
+      <li className="nav-item p-2">
+        <NavLink className={({ isActive }) => (isActive ? active : normal)} to="/">
+          Home
+        </NavLink>
+      </li>
+      <li className="nav-item p-2">
+        <NavLink className={({ isActive }) => (isActive ? active : normal)} to="/news-media">
+          About
+        </NavLink>
+      </li>
+      <li className="nav-item p-2">{serviceDropdown}</li>
+      <li className="nav-item p-2">{productDropdown}</li>
+      <li className="nav-item p-2">
+        <NavLink className={({ isActive }) => (isActive ? active : normal)} to="/about">
+          Team
+        </NavLink>
+      </li>
+      <li className="nav-item p-2">
+        <NavLink className={({ isActive }) => (isActive ? active : normal)} to="/contact">
+          Contact
+        </NavLink>
+      </li>
+      {!isLoggedIn ? (
+        <li className="nav-item p-2">
+          <NavLink to="/login" className={({ isActive }) => (isActive ? active : normal)}>
+            Login
+          </NavLink>
+        </li>
+      ) : (
+        <>
+          <li className="nav-item p-2">
+            <NavLink className={({ isActive }) => (isActive ? active : normal)} to="/dashboard">
+              Dashboard
+            </NavLink>
+          </li>
+          <li className="nav-item p-2">
+            <button
+              onClick={handleLogout}
+              className="btn btn-sm bg-red-500 text-white px-3 py-1 rounded hover:bg-red-700 transition"
+            >
+              Logout
+            </button>
+          </li>
+        </>
+      )}
+    </>
+  );
 
-  // Mobile nav items
+  // --- Mobile Nav Items ---
   const mobileNavItem = (
     <>
       <li>
         <NavLink
           className={({ isActive }) => (isActive ? active : normal)}
-          to="/home"
+          to="/"
           onClick={() => setMobileMenuOpen(false)}
         >
           Home
@@ -177,19 +213,13 @@ const Nav = () => {
         >
           Service
           <svg
-            className={`w-4 h-4 transition-transform ${
-              mobileServiceOpen ? "rotate-180" : ""
-            }`}
+            className={`w-4 h-4 transition-transform ${mobileServiceOpen ? "rotate-180" : ""}`}
             fill="none"
             stroke="currentColor"
             strokeWidth={2}
             viewBox="0 0 24 24"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M19 9l-7 7-7-7"
-            />
+            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
           </svg>
         </button>
         <ul className={`${mobileServiceOpen ? "block" : "hidden"} pl-4`}>
@@ -228,19 +258,13 @@ const Nav = () => {
         >
           Product
           <svg
-            className={`w-4 h-4 transition-transform ${
-              mobileProductOpen ? "rotate-180" : ""
-            }`}
+            className={`w-4 h-4 transition-transform ${mobileProductOpen ? "rotate-180" : ""}`}
             fill="none"
             stroke="currentColor"
             strokeWidth={2}
             viewBox="0 0 24 24"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M19 9l-7 7-7-7"
-            />
+            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
           </svg>
         </button>
         <ul className={`${mobileProductOpen ? "block" : "hidden"} pl-4`}>
@@ -288,18 +312,47 @@ const Nav = () => {
           Contact
         </NavLink>
       </li>
+      {!isLoggedIn ? (
+        <li>
+          <NavLink
+            to="/login"
+            className={({ isActive }) => (isActive ? active : normal)}
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            Login
+          </NavLink>
+        </li>
+      ) : (
+        <>
+          <li>
+            <NavLink
+              className={({ isActive }) => (isActive ? active : normal)}
+              to="/dashboard"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Dashboard
+            </NavLink>
+          </li>
+          <li>
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
+                handleLogout();
+              }}
+              className="btn btn-sm bg-red-500 text-white px-3 py-1 rounded hover:bg-red-700 transition w-full text-left"
+            >
+              Logout
+            </button>
+          </li>
+        </>
+      )}
       <li className="pt-4">
         <a
           className="flex items-center gap-2 rounded-xl bg-[#F15F22] px-4 py-3 text-sm font-semibold text-white shadow-sm transition-all duration-150 hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
           href="/"
         >
           Get A Quote
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-4 w-4"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
             <path
               fillRule="evenodd"
               d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
@@ -311,91 +364,9 @@ const Nav = () => {
     </>
   );
 
-  // Desktop nav items
-  const desktopNavItem = (
-    <>
-      <li className="nav-item p-2">
-        <NavLink
-          className={({ isActive }) => (isActive ? active : normal)}
-          to="/"
-        >
-          Home
-        </NavLink>
-      </li>
-      <li className="nav-item p-2">
-        <NavLink
-          className={({ isActive }) => (isActive ? active : normal)}
-          to="/dashboard"
-        >
-          About
-        </NavLink>
-      </li>
-      <li className="nav-item p-2">{serviceDropdown}</li>
-      <li className="nav-item p-2">{productDropdown}</li>
-      <li className="nav-item p-2">
-        <NavLink
-          className={({ isActive }) => (isActive ? active : normal)}
-          to="/about"
-        >
-          Team
-        </NavLink>
-      </li>
-      <li className="nav-item p-2">
-        <NavLink
-          className={({ isActive }) => (isActive ? active : normal)}
-          to="/contact"
-        >
-          Contact
-        </NavLink>
-      </li>
-
-     
-        
-     
-
-      <li className="nav-item p-2">
-        {!isLoggedIn ? (
-          // Show Login if not logged in
-          <NavLink
-            to="/login"
-            className={({ isActive }) => (isActive ? active : normal)}
-          >
-            Login
-          </NavLink>
-        ) : (
-          // Show Dashboard and Logout if logged in
-          <>
-
-          <li className="nav-item p-2">
-          <NavLink
-            className={({ isActive }) => (isActive ? active : normal)}
-            to="/dashboard"
-          >
-            Dashboard
-          </NavLink>
-        </li>
-            {/* <NavLink
-              onClick={handleLogout}
-              className="btn btn-sm btn-error ml-2"
-            >
-              Logout
-            </NavLink> */}
-             <button
-          onClick={handleLogout}
-          className="btn btn-sm btn-error ml-2"
-        >
-          Logout
-        </button>
-            
-          </>
-        )}
-      </li>
-    </>
-  );
-
   return (
     <div className="sticky top-0 z-50">
-      <nav className="bg-[#f5f0f0]  shadow-md">
+      <nav className="bg-[#f5f0f0] shadow-md">
         <div className="mx-auto max-w-7xl px-4">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
@@ -431,7 +402,7 @@ const Nav = () => {
             {/* Mobile Menu Button */}
             <div className="lg:hidden flex items-center">
               <button
-                className="text-white focus:outline-none p-2"
+                className="text-black focus:outline-none p-2"
                 onClick={() => setMobileMenuOpen((prev) => !prev)}
                 aria-label="Toggle menu"
               >
@@ -443,17 +414,9 @@ const Nav = () => {
                   viewBox="0 0 24 24"
                 >
                   {mobileMenuOpen ? (
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M6 18L18 6M6 6l12 12"
-                    />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                   ) : (
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M4 6h16M4 12h16M4 18h16"
-                    />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
                   )}
                 </svg>
               </button>
