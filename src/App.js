@@ -3,7 +3,7 @@ import "./App.css";
 import TopNav from "./components/TopNav/TopNav";
 import Nav from "./components/Nav/Nav";
 import Footer from "./components/Footer/Footer";
-import Login from "./components/Login/Login";
+// import Login from "./components/Login/Login";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Home from "./components/Home/Home";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
@@ -35,7 +35,7 @@ function App() {
       {/* <HeaderNavBar></HeaderNavBar> */}
 
       <Routes>
-        <Route path="/login" element={<Login />}></Route>
+        {/* <Route path="/login" element={<Login />}></Route> */}
         <Route path="/users-login" element={<Users />}></Route>
 
         <Route path="/" element={<Home />}></Route>
