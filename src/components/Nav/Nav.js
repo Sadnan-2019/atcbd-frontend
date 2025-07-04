@@ -1,18 +1,38 @@
-import React, { useEffect, useState } from "react";
-import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
+import React, { useEffect, useRef, useState } from "react";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import atch from "../../assets/ATCL_Logo5.png";
 import { toast } from "react-toastify";
 
+// Utility to detect and close dropdowns on outside click
+function useOutsideClick(ref, handler) {
+  useEffect(() => {
+    function listener(event) {
+      if (!ref.current || ref.current.contains(event.target)) return;
+      handler();
+    }
+    document.addEventListener("mousedown", listener);
+    return () => document.removeEventListener("mousedown", listener);
+  }, [ref, handler]);
+}
+
 const Nav = () => {
-  const [serviceOpen, setServiceOpen] = useState(false);
-  const [productOpen, setProductOpen] = useState(false);
+  // Menu states
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [mobileServiceOpen, setMobileServiceOpen] = useState(false);
-  const [mobileProductOpen, setMobileProductOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState(""); // "service", "product", ""
+  const [openSubDropdown, setOpenSubDropdown] = useState(""); // "product1", ""
+  const [mobileOpenDropdown, setMobileOpenDropdown] = useState(""); // "service", "product", ""
+  const [mobileOpenSubDropdown, setMobileOpenSubDropdown] = useState(""); // "product1", ""
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const navigate = useNavigate();
   const location = useLocation();
+  const navigate = useNavigate();
+
+  // Close dropdowns on outside click (desktop)
+  const navRef = useRef(null);
+  useOutsideClick(navRef, () => {
+    setOpenDropdown("");
+    setOpenSubDropdown("");
+  });
 
   useEffect(() => {
     const token = localStorage.getItem("userToken");
@@ -32,39 +52,45 @@ const Nav = () => {
   const normal =
     "mx-1 text-white-600 font-medium font-bold focus:text-white p-0 lg:text-black";
 
-  // --- Dropdown for Service ---
+  // --- Dropdown for Service (desktop) ---
   const serviceDropdown = (
-    <div
-      className="relative"
-      onMouseEnter={() => setServiceOpen(true)}
-      onMouseLeave={() => setServiceOpen(false)}
-    >
+    <div className="relative">
       <button
         className="flex items-center gap-1 focus:outline-none"
-        onClick={() => setServiceOpen((prev) => !prev)}
         type="button"
+        aria-haspopup="true"
+        aria-expanded={openDropdown === "service"}
+        onClick={() =>
+          setOpenDropdown(openDropdown === "service" ? "" : "service")
+        }
       >
         <span className="whitespace-nowrap">Service</span>
         <svg
-          className={`w-4 h-4 transition-transform ${serviceOpen ? "rotate-180" : ""}`}
+          className={`w-4 h-4 transition-transform ${
+            openDropdown === "service" ? "rotate-180" : ""
+          }`}
           fill="none"
           stroke="currentColor"
           strokeWidth={2}
           viewBox="0 0 24 24"
         >
-          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M19 9l-7 7-7-7"
+          />
         </svg>
       </button>
       <ul
-        className={`absolute left-0 z-20 mt-2 w-40 rounded-md bg-gradient-to-r from-[#92468E] to-[#38235D] shadow-lg py-2 text-sm transition-all duration-150 ${
-          serviceOpen ? "block" : "hidden"
+        className={`absolute left-0 z-20 mt-2 w-40 rounded-md bg-gradient-to-r from-[#92468E] to-[#38235D] shadow-lg py-2 text-sm ${
+          openDropdown === "service" ? "block" : "hidden"
         }`}
       >
         <li>
           <NavLink
             to="/service1"
             className="block px-4 py-2 text-white hover:bg-yellow-500 hover:text-black transition"
-            onClick={() => setServiceOpen(false)}
+            onClick={() => setOpenDropdown("")}
           >
             Service 1
           </NavLink>
@@ -73,7 +99,7 @@ const Nav = () => {
           <NavLink
             to="/service2"
             className="block px-4 py-2 text-white hover:bg-yellow-500 hover:text-black transition"
-            onClick={() => setServiceOpen(false)}
+            onClick={() => setOpenDropdown("")}
           >
             Service 2
           </NavLink>
@@ -82,48 +108,104 @@ const Nav = () => {
     </div>
   );
 
-  // --- Dropdown for Product ---
+  // --- Dropdown for Product (desktop) ---
   const productDropdown = (
-    <div
-      className="relative"
-      onMouseEnter={() => setProductOpen(true)}
-      onMouseLeave={() => setProductOpen(false)}
-    >
+    <div className="relative">
       <button
         className="flex items-center gap-1 focus:outline-none"
-        onClick={() => setProductOpen((prev) => !prev)}
         type="button"
+        aria-haspopup="true"
+        aria-expanded={openDropdown === "product"}
+        onClick={() => {
+          setOpenDropdown(openDropdown === "product" ? "" : "product");
+          setOpenSubDropdown("");
+        }}
       >
         <span className="whitespace-nowrap">Product</span>
         <svg
-          className={`w-4 h-4 transition-transform ${productOpen ? "rotate-180" : ""}`}
+          className={`w-4 h-4 transition-transform ${
+            openDropdown === "product" ? "rotate-180" : ""
+          }`}
           fill="none"
           stroke="currentColor"
           strokeWidth={2}
           viewBox="0 0 24 24"
         >
-          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M19 9l-7 7-7-7"
+          />
         </svg>
       </button>
       <ul
-        className={`absolute left-0 z-20 mt-2 w-40 rounded-md bg-gradient-to-r from-[#92468E] to-[#38235D] shadow-lg py-2 text-sm transition-all duration-150 ${
-          productOpen ? "block" : "hidden"
+        className={`absolute left-0 z-30 mt-2 w-48 rounded-md bg-gradient-to-r from-[#92468E] to-[#38235D] shadow-lg py-2 text-sm ${
+          openDropdown === "product" ? "block" : "hidden"
         }`}
       >
-        <li>
-          <NavLink
-            to="/product1"
-            className="block px-4 py-2 text-white hover:bg-yellow-500 hover:text-black transition"
-            onClick={() => setProductOpen(false)}
+        <li className="relative">
+          <button
+            className="flex items-center justify-between w-full px-4 py-2 text-white hover:bg-yellow-500 hover:text-black transition"
+            onClick={() =>
+              setOpenSubDropdown(
+                openSubDropdown === "product1" ? "" : "product1"
+              )
+            }
           >
             Product 1
-          </NavLink>
+            <svg
+              className={`w-4 h-4 ml-2 transition-transform ${
+                openSubDropdown === "product1" ? "rotate-90" : ""
+              }`}
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={2}
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          </button>
+          {/* Submenu for Product 1 */}
+          <ul
+            className={`absolute left-full top-0 z-40 mt-0 ml-0 w-40 rounded-md bg-gradient-to-r from-[#92468E] to-[#38235D] shadow-lg py-2 text-sm ${
+              openSubDropdown === "product1" ? "block" : "hidden"
+            }`}
+          >
+            <li>
+              <NavLink
+                to="/product1/mobile"
+                className="block px-4 py-2 text-white hover:bg-yellow-500 hover:text-black transition"
+                onClick={() => {
+                  setOpenDropdown("");
+                  setOpenSubDropdown("");
+                }}
+              >
+                Mobile
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/product1/laptop"
+                className="block px-4 py-2 text-white hover:bg-yellow-500 hover:text-black transition"
+                onClick={() => {
+                  setOpenDropdown("");
+                  setOpenSubDropdown("");
+                }}
+              >
+                Laptop
+              </NavLink>
+            </li>
+          </ul>
         </li>
         <li>
           <NavLink
             to="/product2"
             className="block px-4 py-2 text-white hover:bg-yellow-500 hover:text-black transition"
-            onClick={() => setProductOpen(false)}
+            onClick={() => setOpenDropdown("")}
           >
             Product 2
           </NavLink>
@@ -208,12 +290,18 @@ const Nav = () => {
       <li>
         <button
           className="flex items-center gap-1 w-full text-left focus:outline-none"
-          onClick={() => setMobileServiceOpen((prev) => !prev)}
+          onClick={() =>
+            setMobileOpenDropdown(
+              mobileOpenDropdown === "service" ? "" : "service"
+            )
+          }
           type="button"
         >
           Service
           <svg
-            className={`w-4 h-4 transition-transform ${mobileServiceOpen ? "rotate-180" : ""}`}
+            className={`w-4 h-4 transition-transform ${
+              mobileOpenDropdown === "service" ? "rotate-180" : ""
+            }`}
             fill="none"
             stroke="currentColor"
             strokeWidth={2}
@@ -222,14 +310,18 @@ const Nav = () => {
             <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
           </svg>
         </button>
-        <ul className={`${mobileServiceOpen ? "block" : "hidden"} pl-4`}>
+        <ul
+          className={`${
+            mobileOpenDropdown === "service" ? "block" : "hidden"
+          } pl-4`}
+        >
           <li>
             <NavLink
               to="/service1"
               className="block px-3 py-1 text-white hover:bg-yellow-500 hover:text-black transition rounded"
               onClick={() => {
                 setMobileMenuOpen(false);
-                setMobileServiceOpen(false);
+                setMobileOpenDropdown("");
               }}
             >
               Service 1
@@ -241,7 +333,7 @@ const Nav = () => {
               className="block px-3 py-1 text-white hover:bg-yellow-500 hover:text-black transition rounded"
               onClick={() => {
                 setMobileMenuOpen(false);
-                setMobileServiceOpen(false);
+                setMobileOpenDropdown("");
               }}
             >
               Service 2
@@ -253,12 +345,18 @@ const Nav = () => {
       <li>
         <button
           className="flex items-center gap-1 w-full text-left focus:outline-none"
-          onClick={() => setMobileProductOpen((prev) => !prev)}
+          onClick={() =>
+            setMobileOpenDropdown(
+              mobileOpenDropdown === "product" ? "" : "product"
+            )
+          }
           type="button"
         >
           Product
           <svg
-            className={`w-4 h-4 transition-transform ${mobileProductOpen ? "rotate-180" : ""}`}
+            className={`w-4 h-4 transition-transform ${
+              mobileOpenDropdown === "product" ? "rotate-180" : ""
+            }`}
             fill="none"
             stroke="currentColor"
             strokeWidth={2}
@@ -267,18 +365,71 @@ const Nav = () => {
             <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
           </svg>
         </button>
-        <ul className={`${mobileProductOpen ? "block" : "hidden"} pl-4`}>
+        <ul
+          className={`${
+            mobileOpenDropdown === "product" ? "block" : "hidden"
+          } pl-4`}
+        >
+          {/* Product 1 with nested mobile menu */}
           <li>
-            <NavLink
-              to="/product1"
-              className="block px-3 py-1 text-white hover:bg-yellow-500 hover:text-black transition rounded"
-              onClick={() => {
-                setMobileMenuOpen(false);
-                setMobileProductOpen(false);
-              }}
+            <button
+              className="flex items-center gap-1 w-full text-left focus:outline-none"
+              onClick={() =>
+                setMobileOpenSubDropdown(
+                  mobileOpenSubDropdown === "product1" ? "" : "product1"
+                )
+              }
+              type="button"
             >
               Product 1
-            </NavLink>
+              <svg
+                className={`w-4 h-4 transition-transform ${
+                  mobileOpenSubDropdown === "product1" ? "rotate-180" : ""
+                }`}
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2}
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </button>
+            <ul
+              className={`${
+                mobileOpenSubDropdown === "product1" ? "block" : "hidden"
+              } pl-4`}
+            >
+              <li>
+                <NavLink
+                  to="/product1/mobile"
+                  className="block px-3 py-1 text-white hover:bg-yellow-500 hover:text-black transition rounded"
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    setMobileOpenDropdown("");
+                    setMobileOpenSubDropdown("");
+                  }}
+                >
+                  Mobile
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/product1/laptop"
+                  className="block px-3 py-1 text-white hover:bg-yellow-500 hover:text-black transition rounded"
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    setMobileOpenDropdown("");
+                    setMobileOpenSubDropdown("");
+                  }}
+                >
+                  Laptop
+                </NavLink>
+              </li>
+            </ul>
           </li>
           <li>
             <NavLink
@@ -286,7 +437,7 @@ const Nav = () => {
               className="block px-3 py-1 text-white hover:bg-yellow-500 hover:text-black transition rounded"
               onClick={() => {
                 setMobileMenuOpen(false);
-                setMobileProductOpen(false);
+                setMobileOpenDropdown("");
               }}
             >
               Product 2
@@ -365,7 +516,7 @@ const Nav = () => {
   );
 
   return (
-    <div className="sticky top-0 z-50">
+    <div className="sticky top-0 z-50" ref={navRef}>
       <nav className="bg-[#f5f0f0] shadow-md">
         <div className="mx-auto max-w-7xl px-4">
           <div className="flex items-center justify-between h-16">
@@ -373,7 +524,6 @@ const Nav = () => {
             <div className="flex items-center gap-2">
               <img src={atch} alt="ATCL Logo" className="h-12 w-auto" />
             </div>
-
             {/* Desktop Menu */}
             <div className="hidden lg:flex items-center">
               <ul className="flex items-center gap-1">{desktopNavItem}</ul>
@@ -398,7 +548,6 @@ const Nav = () => {
                 </a>
               </div>
             </div>
-
             {/* Mobile Menu Button */}
             <div className="lg:hidden flex items-center">
               <button
@@ -423,7 +572,6 @@ const Nav = () => {
             </div>
           </div>
         </div>
-
         {/* Mobile Dropdown Menu */}
         <div
           className={`lg:hidden transition-all duration-300 ${
