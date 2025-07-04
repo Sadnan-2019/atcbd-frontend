@@ -19,7 +19,7 @@ const AddTeamMember = () => {
       formData.append("file", data.file[0]);
 
       const response = await axios.post(
-        "http://localhost:5000/api/team/add",
+        "https://atcbd-backend.onrender.com/api/team/add",
         formData,
         {
           headers: {

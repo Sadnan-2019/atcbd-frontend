@@ -16,7 +16,7 @@ const Users = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/admin/users-login",
+        "https://atcbd-backend.onrender.com/api/admin/users-login",
         formData
       );
 
@@ -54,7 +54,9 @@ const Users = () => {
         </div>
 
         <div className="mb-4">
-          <label className="block mb-1 font-medium text-gray-700">Password</label>
+          <label className="block mb-1 font-medium text-gray-700">
+            Password
+          </label>
           <input
             type="password"
             name="password"
