@@ -7,7 +7,7 @@ import axios from "axios";
 
 const TeamSlider = () => {
   const [teamData, setTeams] = useState([]);
-  const [loadingId, setLoadingId] = useState(null); // To show spinner on the specific delete button
+  // const [loadingId, setLoadingId] = useState(null); // To show spinner on the specific delete button
 
   // Fetch services
   const fetchServices = () => {

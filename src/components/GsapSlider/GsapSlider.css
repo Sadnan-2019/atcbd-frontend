@@ -107,14 +107,14 @@
   font-size: 3rem;
   font-weight: bold;
   line-height: 1.2;
-   color: #422774;
+   color: #1466C6;
 }
 
 .slide-text {
   font-size: 1.2rem;
   margin-top: 1rem;
   max-width: 600px;
-  color: #422774;
+  color: #1466C6;
 }
 
 .slide-btn {
@@ -124,7 +124,7 @@
 .btn {
   
   
-  background-color: #f15f22;
+  background-color: #1466C6;
   color: white;
   font-weight: bold;
   border-radius: 4px;
