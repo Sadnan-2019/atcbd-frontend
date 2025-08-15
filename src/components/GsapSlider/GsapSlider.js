@@ -5,17 +5,17 @@ import { useSwipeable } from "react-swipeable";
 // Slider data
 const slides = [
   {
-    title: "Good Position For Good Work",
+    title: "Good Position For Good  ",
     button: { label: "Surveying", link: "#" },
     bg: "https://i.ibb.co/dswKy7fm/Leonardo-Phoenix-10-A-highly-detailed-and-realistic-illustrati-2.jpg",
   },
   {
-    title: "Good Position For Good Work",
+    title: "Good Position For  ATCL Work",
     button: { label: "Civil Engineering", link: "#" },
     bg: "https://i.ibb.co/5bCJScR/banner3.jpg",
   },
   {
-    title: "Good Position For Good Work",
+    title: "Good Position For Bangladesh",
     button: { label: "Building Construction", link: "#" },
     bg: "https://i.ibb.co/ycX1Lfhq/9c96602d-c4dd-4c55-aeb8-70d1c3c6d7cc.jpg",
   }
@@ -119,7 +119,7 @@ export default function GsapSlider() {
 
   return (
     <section
-      className="relative w-full min-h-[480px] flex flex-col md:flex-row items-stretch rounded-xl overflow-hidden"
+      className="relative w-full min-h-[480px] flex flex-col md:flex-row items-stretch  overflow-hidden"
       {...handlers}
       style={{ background: "#fff" }}
     >
@@ -158,7 +158,7 @@ export default function GsapSlider() {
           <div
             key={i}
             ref={el => (slideRefs.current[i] = el)}
-            className={`absolute left-0 top-0 w-full h-full flex flex-col justify-center items-center md:items-start`}
+            className={`absolute left-0 top-0 w-full h-full flex flex-col justify-center items-center md:items-center`}
             style={{
               opacity: i === currentSlide ? 1 : 0,
               pointerEvents: i === currentSlide ? "auto" : "none",
@@ -167,7 +167,7 @@ export default function GsapSlider() {
           >
             <h2
               ref={el => (titleRefs.current[i] = el)}
-              className="text-white font-extrabold text-2xl md:text-5xl mb-10 text-center md:text-left"
+              className="text-white font-extrabold text-2xl md:text-4xl mb-10 text-center  "
               style={{ textShadow: "0 4px 32px #0007" }}
             >
               {slide.title}
@@ -175,10 +175,9 @@ export default function GsapSlider() {
             <div ref={el => (btnRefs.current[i] = el)}>
               <a
                 href={slide.button.link}
-                className="flex items-center bg-blue-500 bg-opacity-80 hover:bg-blue-600 transition rounded-full shadow-md px-6 md:px-10 py-3"
+                className="flex btn md-btn items-center bg-blue-500 bg-opacity-80 hover:bg-blue-600 transition rounded-full shadow-md    "
                 style={{
-                  width: "100%",
-                  maxWidth: "370px",
+                  
                   fontWeight: "bold",
                   fontSize: "1.05rem",
                   color: "#fff",
@@ -186,7 +185,7 @@ export default function GsapSlider() {
                 }}
               >
                 {slide.button.label}
-                <span className="ml-auto bg-white bg-opacity-40 rounded-full w-10 md:w-12 h-10 md:h-12 flex items-center justify-center">
+                <span className="ml-auto bg-white bg-opacity-40 rounded-full w-10 md:w-5   h-10 md:h-5 flex items-center justify-center">
                   <svg
                     className="w-6 h-6 md:w-8 md:h-8 text-blue-500"
                     fill="none"
