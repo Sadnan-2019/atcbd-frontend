@@ -17,7 +17,7 @@ const slides = [
   {
     title: "Good Position For Bangladesh",
     button: { label: "Building Construction", link: "#" },
-    bg: "https://i.ibb.co/ycX1Lfhq/9c96602d-c4dd-4c55-aeb8-70d1c3c6d7cc.jpg",
+    bg: "https://i.ibb.co.com/zHSq9wJg/landingatcl.jpg",
   }
 ];
 

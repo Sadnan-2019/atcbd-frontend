@@ -13,7 +13,7 @@ const caseStudies = [
   {
     image: "https://i.ibb.co.com/9kL2VBD6/side-bim-en.webp",
     company: "ATCL",
-    title: "HiPer VR/PT. HUTAMA KARYA/Apr.2024",
+    title: "HiPer VR/PT. HUTAMA KARYA/Apr.2024Corporation",
     tags: ["Civil Engineering", "GNSS"],
   },
   {
