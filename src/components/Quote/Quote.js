@@ -11,8 +11,8 @@ const Quote = () => {
     <div class="flex justify-end">
       <div class="w-full lg:w-9/12 xl:w-8/12 bg-white/90 backdrop-blur-sm p-8 rounded-2xl shadow-lg opacity-90">
         <div class="mb-12 text-center">
-          <span class="text-lg text-primary font-semibold uppercase">Get a Quote For Free</span>
-          <h2 class="text-3xl md:text-4xl font-bold mt-2">Request a Free Quote</h2>
+          <span class="text-lg text-[#1466C6] font-semibold uppercase">Get a Quote For Free</span>
+          <h2 class="text-3xl text-[#1466C6] md:text-4xl font-bold mt-2">Request a Free Quote</h2>
         </div>
 
         <form action="contact" id="contactform" name="form1" method="post" class="space-y-6">

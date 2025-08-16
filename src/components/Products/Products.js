@@ -21,13 +21,13 @@ const Products = () => {
   return (
     <div className="bg-gray-50">
       <div className=" ">
-        <h1 className="text-3xl text-center text-[#2C234D]  font-bold poppins-b sm:text-4xl py-2">
+        <h1 className="text-3xl text-center text-[#1466C6]  font-bold poppins-b sm:text-4xl py-8">
           Our Products
         </h1>
 
-        <p className=" lg:text-xl text-center text-[#E0581E] font-semibold   sm:text-4xl py-2">
+        <p className=" lg:text-xl text-center text-[#1466C6] font-semibold   sm:text-4xl py-4">
           WHAT TYPE OF PRODUCT WE CAN OFFER YOU
-        </p>
+        </p>  
       </div>
 
       <div className="w-full px-4">
@@ -36,7 +36,7 @@ const Products = () => {
             <button
               key={category._id}
               // onClick={() => handleCategoryClick(category._id)}
-              className="bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-md mb-1"
+              className="text-white bg-[#1466C6] hover:bg-white hover:text-[#1466C6] font-medium py-2 px-4 rounded-md mb-1"
             >
               {category.categoryname}
             </button>

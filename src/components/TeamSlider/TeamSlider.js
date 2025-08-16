@@ -46,11 +46,11 @@ const TeamSlider = () => {
   return (
     <div className="full-width-slider  px-4 py-10 bg-gray-50">
       <div className=" ">
-        <h1 className="text-3xl text-center text-[#2C234D]  font-bold poppins-b sm:text-4xl py-2">
+        <h1 className="text-3xl text-center text-[#1466C6]  font-bold poppins-b sm:text-4xl py-2">
           Team Members
         </h1>
 
-        <p className=" lg:text-xl text-center text-[#E0581E] font-semibold   sm:text-4xl py-2">
+        <p className=" lg:text-xl text-center text-[#1466C6] font-semibold   sm:text-4xl py-2">
           What We Can Do For You
         </p>
       </div>

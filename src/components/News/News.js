@@ -47,9 +47,9 @@ const News = () => {
   };
 
   return (
-    <div className="full-width-slider  py-8 px-2 bg-white">
+    <div className="full-width-slider  py-8 px-2 bg-white ">
       <div className=" ">
-        <h1 className="text-3xl text-center text-[#2C234D]  font-bold poppins-b sm:text-4xl py-2">
+        <h1 className="text-3xl text-center text-[#1455c6]  font-bold poppins-b sm:text-4xl py-10">
           Our News
         </h1>
 
@@ -68,7 +68,7 @@ const News = () => {
                   alt=""
                   className="w-full h-56 object-cover"
                 />
-                <div className="absolute top-3 left-3 bg-primary text-white p-2 rounded-lg text-center ">
+                <div className="absolute top-3 left-3 bg-[#1455c6] text-white p-2 rounded-lg text-center ">
                   <p className="text-lg  text-gray-100">
                     {new Date(item.publishDate).toLocaleDateString()}
                   </p>

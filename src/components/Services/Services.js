@@ -20,15 +20,15 @@ const Services = () => {
         toast.error("Failed to fetch services.");
       });
   };
-
+ 
   return (
     <div className="py-8 bg-white">
       <div className=" ">
-        <h1 className="text-3xl text-center text-[#2C234D]  font-bold poppins-b sm:text-4xl py-2">
+        <h1 className="text-3xl text-center text-[#1466C6]  font-bold poppins-b sm:text-4xl py-2">
           Our Services
         </h1>
 
-        <p className=" lg:text-xl text-center text-[#E0581E] font-semibold   sm:text-4xl py-2">
+        <p className=" lg:text-xl text-center text-[#1466C6] font-semibold   sm:text-4xl py-2">
           WHAT SERVICE WE CAN OFFER YOU
         </p>
       </div>

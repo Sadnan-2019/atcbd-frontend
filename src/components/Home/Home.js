@@ -12,14 +12,16 @@ const Home = () => {
   return (
     <div>
       <GsapSlider></GsapSlider>
-      <Services></Services>
-      <CompanyOverview></CompanyOverview>
+      <News></News>
       <Products></Products>
       <ProductCarousel></ProductCarousel>
+      <CompanyOverview></CompanyOverview>
+      <Services></Services>
+         <TeamSlider></TeamSlider>
       <Quote></Quote>
+   
+
       {/* <Login></Login> */}
-      <TeamSlider></TeamSlider>
-      <News></News>
     </div>
   );
 };

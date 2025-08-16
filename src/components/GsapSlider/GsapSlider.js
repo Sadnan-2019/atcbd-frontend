@@ -21,25 +21,28 @@ const slides = [
   }
 ];
 
+
+
+
 // Sidebar button data (fixed)
 const sidebarButtons = [
   {
-    img: "https://i.ibb.co/2Wc2vWq/surveying.jpg",
+    img: "https://i.ibb.co.com/FbpFj4TF/side-survey-en-1.webp",
     label: "Surveying",
     link: "#surveying",
   },
   {
-    img: "https://i.ibb.co/y4n5z9w/civil-engineering.jpg",
+    img: "https://i.ibb.co.com/6cFRXb4b/side-const-en.webp",
     label: "Civil Engineering",
     link: "#civil",
   },
   {
-    img: "https://i.ibb.co/b2FhJkF/building-construction.jpg",
+    img: "https://i.ibb.co.com/9kL2VBD6/side-bim-en.webp",
     label: "Building Construction",
     link: "#building",
   },
   {
-    img: "https://i.ibb.co/KxQ2Yc3/agriculture.jpg",
+    img: "https://i.ibb.co.com/4w7dTw38/side-agriculture-en.webp",
     label: "Agriculture",
     link: "#agriculture",
   },
@@ -167,7 +170,7 @@ export default function GsapSlider() {
           >
             <h2
               ref={el => (titleRefs.current[i] = el)}
-              className="text-white font-extrabold text-2xl md:text-4xl mb-10 text-center  "
+              className="text-[#1455c6] font-extrabold text-2xl md:text-4xl mb-10 text-center  "
               style={{ textShadow: "0 4px 32px #0007" }}
             >
               {slide.title}
@@ -213,10 +216,10 @@ export default function GsapSlider() {
             <img
               src={btn.img}
               alt={btn.label}
-              className="w-16 md:w-28 h-16 object-cover"
+              className="w-16 md:w-28 h-16 p-1 object-cover"
             />
             <div className="flex-1 text-left px-2 md:px-4 py-2">
-              <span className="block text-white font-bold text-base md:text-xl leading-tight">
+              <span className="block text-white font-bold text-base md:text-sm leading-tight">
                 {btn.label}
               </span>
             </div>
