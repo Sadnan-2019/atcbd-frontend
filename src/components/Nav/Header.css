@@ -1,0 +1,39 @@
+@keyframes spin-slow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+@keyframes spin-slower {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(-360deg); }
+}
+@keyframes spin-slowest {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
+}
+.animate-spin-slower {
+  animation: spin-slower 10s linear infinite;
+}
+.animate-spin-slowest {
+  animation: spin-slowest 12s linear infinite;
+}
+
+
+
+.dropdown-content {
+  transform-origin: top;
+  animation: dropdown-fade-in 0.2s ease-in-out;
+}
+
+@keyframes dropdown-fade-in {
+  0% {
+    opacity: 0;
+    transform: scaleY(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}

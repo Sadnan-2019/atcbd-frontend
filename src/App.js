@@ -23,14 +23,16 @@ import AddNews from "./components/Dashboard/News/AddNews";
 import MyDashbaord from "./components/Dashboard/MyDashbaord/MyDashbaord";
 import { useState } from "react";
 import Users from "./components/Dashboard/MyDashbaord/Users";
+import Header from "./components/Nav/Header";
 // import Users from "./components/Dashboard/MyDashbaord/Users";
 
 function App() {
   //  const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
     <div className=" min-h-screen bg-base-100 text-black ">
-      <TopNav></TopNav>
-      <Nav></Nav>
+      {/* <TopNav></TopNav> */}
+      {/* <Nav></Nav> */}
+      <Header></Header>
       {/* <Navbar></Navbar> */}
       {/* <HeaderNavBar></HeaderNavBar> */}
 
